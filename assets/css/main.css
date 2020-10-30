@@ -4884,3 +4884,22 @@ input, select, textarea {
 	cursor: not-allowed;
 	pointer-events: all !important;
   }
+
+  @media (max-width:480px){
+	.column {
+		width:100%;
+	}
+
+	.flip-card {
+		margin:1rem auto !important;
+	}
+
+	.ml6 {
+		font-size:1.3em !important;
+	}
+
+	.emailJd {
+		font-size: 17px !important;
+	}
+
+}
