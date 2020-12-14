@@ -24,7 +24,7 @@
 				<h1 style="font-family: Sofia;line-height: 1.5;">MY<br />
 					PROFILE</h1>
 			</div>
-			<p>Junior Front-End Web Developer</p>
+			<p>Front-End Web Developer</p>
 			<ul class="actions">
 				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 			</ul>
@@ -41,10 +41,8 @@
 				<li class="active"><a href="index.html">INTRODUCTION</a></li>
 			</ul>
 			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="https://github.com/erwinerickson" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="https://my.linkedin.com/in/erwin-erickson-15b713138" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked In</span></a></li>
+				<li><a href="https://github.com/erwinerickson" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 			</ul>
 		</nav>
 
@@ -54,7 +52,7 @@
 			<!-- Featured Post -->
 			<article class="post featured">
 				<header class="major" style="margin-bottom: 1rem;">
-					<h2 style="margin-bottom: unset;">Background</h2>
+					<h2 style="margin-bottom: unset;">PROFILE</h2>
 					<div class="divider div-transparent div-arrow-down"></div>
 					<div class="card">
 						<img src="images/erwin2.png" alt="Erwin" style="width:100%;">
@@ -96,7 +94,7 @@
 					</div>
 					<p>Graduated from <b>Universiti Malaysia Sarawak (UNIMAS)</b> on November 2018 with <br />Bachelor of Computer Science
 						with Honours (Information Systems).
-						<br />Started working at <b>Tractive Sdn Bhd</b> as Web Developer from March 2019 until present.</p>
+						<br />Started working at <b>Tractive Sdn Bhd</b> as a Web Developer from March 2019 until present.</p>
 					<h4 class="ml6" style="margin:unset;">
 						<span class="text-wrapper">
 							<span class="letters">Open for a Job Offer</span>
@@ -115,10 +113,9 @@
 				<h3>Tractive Sdn Bhd</h3>
 				<img src="images/tractive-logo.png" alt="" style="height: 80px;margin-bottom: 10px;" />
 				<p>
-					Tractive Sdn Bhd specialize in Digital Signage. I joined this company in March 2019. As a fresh graduate with zero professional programming experience.
-					I was accepted to joined this company. Other than specializing in Digital Signage Solution. Tractive also help clients to develop a web-based system for them by using Angular 
-					<img src="images/angular.png" alt="" style="width: 30px;height: 30px;vertical-align: middle;" />  framework. 
-					With guidance from the seniors and collegue i learnt this foreign framework. 
+					Tractive Sdn Bhd specializes in Digital Signage. I joined this company in March 2019. Other than specializing in Digital Signage Solution. Tractive also helps clients to develop a web-based system for them by using the Angular 
+					<img src="images/angular.png" alt="" style="width: 30px;height: 30px;vertical-align: middle;" /> framework. 
+					With guidance from the seniors and colleagues, I learned this foreign framework.
 				</p>
 			</article>
 
@@ -143,7 +140,7 @@
 					</header>
 					<a href="#" class="image fit"  style="text-align: -webkit-center;"><img src="images/intego.PNG" alt="" style="height: 448px;
 						max-width: 500px;text-align: -webkit-center;" /></a>
-					<p>Intego is web-based system that populate and centralized all of the availaible billboard that wants to be advertised by their owner.</p>
+					<p>Intego is a web-based system that populates and centralized all available billboards that wanted to be advertised by their owner.</p>
 					<ul class="actions special">
 						<li><a class="button">Full Story</a></li>
 					</ul>
@@ -193,6 +190,35 @@
 					Other than that, we were put in a group of 6 with other interns and assigned to developed a web-based system
 					using PHP <img src="images/php.png" alt="" style="width: 40px;height: 40px;vertical-align: middle;" /> called Digital Activity Board that is used to track students attendance for every activity held by the centre.
 				</p>
+
+
+				<!-- Slideshow container -->
+				<div class="slideshow-container">
+				
+					<!-- Full-width images with number and caption text -->
+					<div class="mySlides fade">
+						<div class="numbertext">1 / 3</div>
+						<img src="images/sjilConvoUnimas.jpg" style="width:100%">
+						<div class="text">Caption Text</div>
+					</div>
+				
+					<div class="mySlides fade">
+						<div class="numbertext">2 / 3</div>
+						<img src="images/transkripUnimas.jpg" style="width:100%">
+						<div class="text">Caption Two</div>
+					</div>
+				
+					<!-- Next and previous buttons -->
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				</div>
+  <br>
+  
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+	<span class="dot" onclick="currentSlide(1)"></span>
+	<span class="dot" onclick="currentSlide(2)"></span>
+  </div>
 			</article>
 
 			<article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;border-top: unset;">
@@ -550,6 +576,35 @@
 			document.getElementById('moreStory').style.display = "none";
 			// document.getElementById('moreStoryAdex').style.display = "none";
 			document.getElementById('lessStory').style.display = "flex";
+		}
+	</script>
+
+	<script>
+		var slideIndex = 1;
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+			if (n > slides.length) { slideIndex = 1 }
+			if (n < 1) { slideIndex = slides.length }
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
 		}
 	</script>
 
