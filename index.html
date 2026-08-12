@@ -1,634 +1,1086 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>ERWIN's</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="icon" type="image/x-icon" href="images/zor_lY9_icon.ico">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Erwin Erickson - Software Engineer specializing in web applications, PHP, MySQL, Linux, automation and systems development.">
+    <meta name="author" content="Erwin Erickson">
+    <title>Erwin Erickson | Software Engineer</title>
+
+    <!--
+    Image sources retained from the existing GitHub Pages repository:
+    https://erwinerickson.github.io/images/erwin2.png
+    https://erwinerickson.github.io/images/pnsb.png
+    https://erwinerickson.github.io/images/tractive-logo.png
+    https://erwinerickson.github.io/images/sgdev.png
+    https://erwinerickson.github.io/images/intego.PNG
+
+    Other existing image assets remain available under:
+    https://erwinerickson.github.io/images/
+-->
+<style>
+        :root {
+            --bg: #f6f8f7;
+            --surface: #ffffff;
+            --text: #18211f;
+            --muted: #687572;
+            --line: #dce5e2;
+            --accent: #6cc6a5;
+            --accent-dark: #23866a;
+            --accent-soft: #e6f5ef;
+            --dark: #17211f;
+            --max: 1120px;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(92%, var(--max));
+            margin: 0 auto;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .brand span {
+            color: var(--accent-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-dark);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            padding: 90px 0 70px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.35fr .65fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-dark);
+            background: var(--accent-soft);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: var(--accent-dark);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(46px, 8vw, 88px);
+            line-height: .98;
+            letter-spacing: -4px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--accent-dark);
+        }
+
+        .hero-description {
+            max-width: 720px;
+            font-size: 19px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 20px;
+            border-radius: 10px;
+            border: 1px solid var(--dark);
+            background: var(--dark);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            opacity: .9;
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--dark);
+            border-color: var(--line);
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: 0 18px 50px rgba(25, 45, 40, .07);
+        }
+
+        .hero-card-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-card ul {
+            list-style: none;
+        }
+
+        .hero-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+            font-weight: 700;
+        }
+
+        .hero-card li:last-child {
+            border-bottom: 0;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 42px;
+        }
+
+        .section-number {
+            color: var(--accent-dark);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .section-intro {
+            max-width: 540px;
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: var(--muted);
+        }
+
+        .about-text p + p {
+            margin-top: 18px;
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .fact {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .fact strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .fact span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* EXPERIENCE */
+        .experience {
+            background: var(--surface);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline {
+            display: grid;
+            gap: 24px;
+        }
+
+        .job {
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            gap: 40px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .job:last-child {
+            border-bottom: 0;
+        }
+
+        .job-date {
+            color: var(--accent-dark);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .job h3 {
+            font-size: 25px;
+            margin-bottom: 4px;
+        }
+
+        .company {
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .job p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .job ul {
+            padding-left: 20px;
+            color: var(--muted);
+        }
+
+        .job li + li {
+            margin-top: 7px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: var(--accent-soft);
+            color: var(--accent-dark);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* PROJECTS */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: .2s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(25, 45, 40, .08);
+        }
+
+        .project-number {
+            color: var(--accent-dark);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* SKILLS */
+        .skills {
+            background: var(--dark);
+            color: white;
+        }
+
+        .skills .section-number {
+            color: var(--accent);
+        }
+
+        .skills .section-intro {
+            color: #b7c2bf;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .skill-group {
+            border: 1px solid #34423e;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .skill-group h3 {
+            color: var(--accent);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .skill-group p {
+            color: #d3dcda;
+            line-height: 1.9;
+        }
+
+        /* EDUCATION */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .education-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .education-card .date {
+            color: var(--accent-dark);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .education-card h3 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+        }
+
+        /* CONTACT */
+        .contact {
+            background: var(--accent-soft);
+        }
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .contact-box h2 {
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .contact-link {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 11px 15px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: #aebbb7;
+            padding: 28px 0;
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 70px;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-grid {
+                gap: 35px;
+            }
+
+            .job {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .projects,
+            .skill-grid,
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-intro {
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .facts {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
-<body class="is-preload">
+<body>
 
-	<!-- Wrapper -->
-	<div id="wrapper" class="fade-in">
+<header>
+    <div class="container">
+        <nav>
+            <a href="#top" class="brand">ERWIN<span>.</span></a>
 
-		<!-- Intro -->
-		<div id="intro">
-			<div class="overlayText">
-				<h1 style="font-family: Font Awesome 5 Brands;line-height: 1.5;">MY<br />
-					PROFILE</h1>
-			</div>
-			<p> Software Engineer</p>
-			<!-- <ul class="actions">
-				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-			</ul> -->
-		</div>
+            <ul class="nav-links">
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#experience">EXPERIENCE</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#education">EDUCATION</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-		<!-- Header -->
-		<header id="header">
-			<!-- <a href="https://drive.google.com/file/d/1RRMnj03jlpWx7n6kwfHajdf050AWEWfn/view?usp=sharing"  download target="_blank" class="logo">RESUME</a> -->
-		</header>
+<main id="top">
 
-		<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li class="active"><a href="index.html">INTRODUCTION</a></li>
-			</ul>
-			<ul class="icons">
-				<li><a href="https://my.linkedin.com/in/erwin-erickson-15b713138" target="_blank"
-						class="icon brands fa-linkedin"><span class="label">Linked In</span></a></li>
-				<li><a href="https://github.com/erwinerickson" target="_blank" class="icon brands fa-github"><span
-							class="label">GitHub</span></a></li>
-				<li><a href="https://drive.google.com/file/d/1mCb2yfbmS6jcmGpLDcJpWZlGx0QvtpVT/view?usp=sharing"
-						target="_blank"><span class="label text-icon">RESUME</span></a></li>
-				<li><a href="https://drive.google.com/file/d/1rOzmje07xZDE-nq2P08XLj3Ttxc0-pD_/view?usp=sharing"
-						target="_blank"><span class="label text-icon">CV</span></a></li>
-			</ul>
-		</nav>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
 
-		<!-- Main -->
-		<div id="main">
+            <div>
+                <div class="eyebrow">Software Engineer</div>
 
-			<!-- Featured Post -->
-			<article class="post featured">
-				<header class="major" style="margin-bottom: 1rem;">
-					<h2 style="margin-bottom: unset;">PROFILE</h2>
-					<div class="divider div-transparent div-arrow-down"></div>
-					<div class="card">
-						<img src="images/erwin2.png" alt="Erwin" style="width:100%;">
-						<div style="padding-top:10px;margin:unset;font-size:20px">ERWIN ERICKSON</div>
-						<p class="title"> SOFTWARE ENGINEER</p>
-						<div style="padding:10px;margin:unset;text-align:-webkit-center;">
-							<table>
-								<tr>
-									<td>
-										<i class="fa fa-envelope" style='font-size:30px'></i>
-									</td>
-									<td>
-										<a style="padding:10px;cursor: pointer;text-decoration: none;border:none;"
-											href="mailto:erwinerickson92@gmail.com">erwinerickson92@gmail.com</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<i class="fa fa-mobile-phone" style='font-size:30px'></i>
-									</td>
-									<td><span style="padding:10px;">+60 135677039</span></td>
-								</tr>
-								<tr>
-									<td>
-										<i class="fas fa-industry" style='font-size:30px'></i>
-									</td>
-									<td><span style="padding:10px;">Pasti Nyala SDN BHD</span></td>
-								</tr>
-								<tr>
-									<td>
-										<i class="fa fa-map-marker" style='font-size:30px'></i>
-									</td>
-									<td><span style="padding:10px;">Kuching, Sarawak</span></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="spacer">
-					</div>
-					<p>Graduated from <b>Universiti Malaysia Sarawak (UNIMAS)</b> on November 2018 with <br />Bachelor
-						of Computer Science
-						with Honours (Information Systems). Currently working as a Software Engineer at Pasti Nyala Sdn Bhd in Kuching, Sarawak.
-						<br />Previoulsy worked at <b>Tractive Sdn Bhd</b> as a Web Developer from March 2019 until
-						January 2021.
-					</p>
-				</header>
-				<div class="divider div-transparent div-arrow-down"></div>
-				<span class="date">April, 2021 - Current</span>
-				<br />
-				<h3>Pasti Nyala Sdn Bhd</h3>
-				<img src="images/pnsb.png" alt="" style="height: 80px;margin-bottom: 10px;border-radius: 10px;" />
-				<p>
-					Pasti Nyala Sdn Bhd is a customized application developer operating in Kuching. Designing and Developing Human Resource System, Financial System
-					for clients. The biggest and currently on going client is the Kuching Port Authority (KPA). PNSB helps develop a web based system called Port Management System for KPA
-					which is a huge system that helps KPA to track, operate and handles thousands of in and out cargo per months.
-				</p>
-				<div class="divider div-transparent div-arrow-down"></div>
-				<span class="date">March, 2019 - January, 2021</span>
-				<br />
-				<h3>Tractive Sdn Bhd</h3>
-				<img src="images/tractive-logo.png" alt="" style="height: 80px;margin-bottom: 10px;border-radius: 10px;" />
-				<p>
-					Tractive Sdn Bhd specializes in Digital Signage. I joined this company in March 2019. Other than
-					specializing in Digital Signage Solution. Tractive also helps clients to develop a web-based system
-					for them by using the Angular
-					<img src="images/angular.png" alt="" style="width: 30px;height: 30px;vertical-align: middle;" />
-					framework.
-				</p>
-			</article>
+                <h1>
+                    Erwin
+                    <span>Erickson</span>
+                </h1>
 
-			<h3 style="padding:unset;text-align: center;">Project Involvement <i class="fa fa-desktop"
-					style='font-size:30px;'></i></h3>
-			<section class="posts" id="lessStory" style="display:flex;">
-				<article>
-					<header>
-						<h2><a href="https://sgdev4.apptractive.com.my/login" target="_blank">Digital Signage<br />
-								Solution</a></h2>
-					</header>
-					<a href="https://sgdev4.apptractive.com.my/login" style="text-align: -webkit-center;"
-						target="_blank" class="image fit"><img src="images/sgdev.png" alt="" style="height: 448px;
-						max-width: 500px;text-align: -webkit-center;" /></a>
-					<p> Circle Media is a Tractive Sdn Bhd own Content Management System. Client can manage their
-						advertisement contents via our CMS dashboard.</p>
-					<ul class="actions special">
-						<li><a class="button" onclick="showSignage()">Full Story</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="https://adex.tacmedia.com.my/" target="_blank">INTEGO<br />
-								ADEX DASHBOARD</a></h2>
-					</header>
-					<a href="https://adex.tacmedia.com.my/" class="image fit" style="text-align: -webkit-center;" target="_blank"><img src="images/intego.PNG"
-							alt="" style="height: 448px;
-						max-width: 500px;text-align: -webkit-center;" /></a>
-					<p>Intego is a web-based system that populates and centralized all available billboards that wanted
-						to be advertised by their owner.</p>
-					<ul class="actions special">
-						<li><a class="button">Full Story</a></li>
-					</ul>
-				</article>
-			</section>
+                <p class="hero-description">
+                    Software Engineer focused on building and maintaining web applications,
+                    databases, automation processes and production systems.
+                    Experienced across PHP, MySQL, JavaScript, Linux, scripting and
+                    system integration.
+                </p>
 
-			<article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;display: none;" id="moreStory">
-				<br />
-				<h4>Circle Media Project</h4>
-				<p>
-					&nbsp;&nbsp;&nbsp;&nbsp; As a Tractive's Digital Signage Solution, Circle Media been there since the
-					beginning. At first it was developed using Angular JS, To add extra function on we decided to
-					develop this Signage Dashboard using Angular 8. I was involved in this migrating process. We worked
-					closed by with our lead designer and developed every component based on the design given.
-					In this project I was assigned to do Sign In and Sign Up using Google Authentication. I use Firebase
-					for this task, after configuring firebase and adding the JSON object contains Firebase informations
-					into the codes then it good to go.<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;Next, my task was to visualize data send from back-end into charts. I'm
-					creating a chart using Chart Js for this task. I'm also responsible to create a conditions/rules for
-					the templates created in this project.
-					A template created will contains media(s) and conditions/rules is a way to configure the behaviour
-					of the media(s) inside template. ghghf
-				</p>
+                <div class="buttons">
+                    <!-- Replace these files with your latest documents -->
+                    <a class="button" href="https://drive.google.com/file/d/1mCb2yfbmS6jcmGpLDcJpWZlGx0QvtpVT/view?usp=sharing" target="_blank">View Resume</a>
+                    <a class="button secondary" href="https://drive.google.com/file/d/1rOzmje07xZDE-nq2P08XLj3Ttxc0-pD_/view?usp=sharing" target="_blank">View CV</a>
+                    <a class="button secondary" href="#contact">Contact Me</a>
+                </div>
+            </div>
 
-				<div class="slideshow-container">
+            <aside class="hero-card">
+                <img src="https://erwinerickson.github.io/images/erwin2.png"
+                     alt="Erwin Erickson"
+                     style="width:100%;max-height:320px;object-fit:cover;border-radius:12px;margin-bottom:22px;">
+                <div class="hero-card-title">Core Focus</div>
+                <ul>
+                    <li>Web Application Development</li>
+                    <li>PHP &amp; MySQL</li>
+                    <li>Linux &amp; Server Administration</li>
+                    <li>Database Automation</li>
+                    <li>System Integration</li>
+                    <li>Production Support</li>
+                </ul>
+            </aside>
 
-					<!-- Full-width images with number and caption text -->
-					<div class="mySlides fade">
-					  <div class="numbertext">1 / 3</div>
-					  <img src="images/sg1.JPG" style="width:100%">
-					  <div class="text">Caption Text</div>
-					</div>
-				  
-					<div class="mySlides fade">
-					  <div class="numbertext">2 / 3</div>
-					  <img src="img2.jpg" style="width:100%">
-					  <div class="text">Caption Two</div>
-					</div>
-				  
-					<div class="mySlides fade">
-					  <div class="numbertext">3 / 3</div>
-					  <img src="img3.jpg" style="width:100%">
-					  <div class="text">Caption Three</div>
-					</div>
-				  
-					<!-- Next and previous buttons -->
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a class="next" onclick="plusSlides(1)">&#10095;</a>
-				  </div>
-				  <br>
-				  
-				  <!-- The dots/circles -->
-				  <div style="text-align:center">
-					<span class="dot" onclick="currentSlide(1)"></span>
-					<span class="dot" onclick="currentSlide(2)"></span>
-					<span class="dot" onclick="currentSlide(3)"></span>
-				  </div>
+        </div>
+    </section>
 
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
 
-				<ul class="actions special">
-					<li><a class="button" onclick="hideStory()">Close Full Story</a></li>
-				</ul>
-			</article>
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">01 / About</div>
+                    <h2>Building systems that work.</h2>
+                </div>
 
-			<!-- <article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;display: none;" id="moreStoryAdex">
-				<br />
-				<h4>Intego Adex Project</h4>
-				<p>
-					&nbsp;&nbsp;&nbsp;&nbsp; This project is for client named T** ME**A. <br />
-				</p>
-				<ul class="actions special">
-					<li><a class="button" onclick="hideStory()">Close Full Story</a></li>
-				</ul>
-			</article> -->
+                <p class="section-intro">
+                    A practical software engineer with experience spanning application
+                    development, databases, infrastructure, automation and technical support.
+                </p>
+            </div>
 
-			<br />
-			<h3 style="padding:unset;text-align: center;">Education <i class="fa fa-graduation-cap"
-					style='font-size:30px;'></i></h3>
-			<article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;">
-				<div class="divider div-transparent div-arrow-down"></div>
-				<span class="date">September, 2014 - November, 2018</span>
-				<br />
-				<h3>Universiti Malaysia Sarawak (UNIMAS)</h3>
-				<img src="images/UNIMAS-logo.png" alt="" style="width: 80px;height: 80px;margin-bottom: 10px;" />
-				<p>
-					Located in Kota Samarahan Sarawak. UNIMAS is a public university built in 1992. I enrolled in UNIMAS
-					on September, 2014.
-					I completed my 4 years(8 semesters) undergraduate degree in <b>Bachelor of Computer Science with
-						Honours (Information Systems)</b> on July 2018 and graduated on November 2018.
-					In my third years into studies, i did an industrial training for 6 months at <b>CENTRE for STUDENT
-						DEVELOPMENT</b> under supervision of Dr Dzulzalani Bin Eden. During the time of
-					my training, i was assigned a task to handle the centre's official website contents using Joomla
-					<img src="images/joomla-icon.png" alt=""
-						style="width: 30px;height: 30px;vertical-align: middle;" />.
-					Other than that, we were put in a group of 6 with other interns and assigned to developed a
-					web-based system
-					using PHP <img src="images/php.png" alt=""
-						style="width: 40px;height: 40px;vertical-align: middle;" /> called Digital Activity Board that
-					is used to track students attendance for every activity held by the centre.
-				</p>
-			</article>
+            <div class="about-grid">
 
-			<article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;border-top: unset;">
-				<div class="divider div-transparent div-arrow-down"></div>
-				<span class="date">August, 2010 - July, 2013</span>
-				<br />
-				<h3>Technology College Sarawak (TCS)</h3>
-				<img src="images/tcs.PNG" alt="" style="height: 80px;margin-bottom: 10px;" />
-				<p>
-					Formerly known as Twintech. TCS is one of the Universiti Teknologi Malaysia (UTM) franchise.
-					I completed my Diploma in Science Computer (Information Technology) in 3 years(6 semesters).
-				</p>
-			</article>
+                <div class="about-text">
+                    <p>
+                        I am a Software Engineer based in Kuching, Sarawak, Malaysia.
+                        I graduated from Universiti Malaysia Sarawak (UNIMAS) with a
+                        Bachelor of Computer Science with Honours in Information Systems
+                        in 2018.
+                    </p>
 
-			<article class="post featured" style="padding-top: 0rem;padding-bottom: 0rem;border-top: unset;">
-				<div class="divider div-transparent div-arrow-down"></div>
-				<span class="date">January, 2005 - December, 2009</span>
-				<br />
-				<h3>Sekolah Menengah Kebangsaan Bintulu <br />(SMK Bintulu)</h3>
-				<img src="images/smk.png" alt="" style="height: 80px;margin-bottom: 10px;" />
-				<p>
-					Located in Bintulu Sarawak, I attend this secondary school and get my Sijil Pelajaran Malaysia (SPM)
-					in 2009 and Penilaian Menengah Rendah (PMR) in 2007.
-					As a science stream student, I took 10 subjects for SPM exam.
-				</p>
-				<table id="result">
-					<tr>
-						<th>Subject</th>
-					</tr>
-					<tr>
-						<td>Bahasa Melayu</td>
-					</tr>
-					<tr>
-						<td>Pendidikan Moral</td>
-					</tr>
-					<tr>
-						<td>Sejarah</td>
-					</tr>
-					<tr>
-						<td>Mathematics</td>
-					</tr>
-					<tr>
-						<td>Additional Mathematics</td>
-					</tr>
-					<tr>
-						<td>Physics</td>
-					</tr>
-					<tr>
-						<td>Chemistry</td>
-					</tr>
-					<tr>
-						<td>Biology</td>
-					</tr>
-					<tr>
-						<td>English for Science and Technology</td>
-					</tr>
-				</table>
-			</article>
+                    <p>
+                        My professional experience began with web development and
+                        technical support at Tractive Sdn Bhd, where I worked with
+                        Angular, Node.js, AWS, Firebase and digital signage systems.
+                    </p>
 
-			<br />
-			<h3 style="padding:unset;text-align: center;padding-bottom: 10px;">Course Work & Skills <i
-					class="fa fa-wrench" style='font-size:30px;'></i></h3>
-			<div class="divider div-transparent div-arrow-down" style="padding:unset;"></div>
-			<br />
-			<article class="post featured" style="padding:unset;border-top: unset;">
-				<div class="row" style="display: inline-flex;margin-left: 0px;">
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/angular.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">Angular 2+</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/js.png" alt="JS" style="width:90px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">Javascript</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/html.png" alt="HTML" style="width:90px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">HTML</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/css.png" alt="CSS" style="width:90px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">CSS</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row" style="display: inline-flex;margin-left: 0px;">
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/git.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">GIT</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/ts.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">TypeScript</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/php.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">PHP</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/scss.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">SCSS</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row" style="display: inline-flex;margin-left: 0px;">
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/joomla-icon.png" alt="Avatar"
-										style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">Joomla</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/mongodb.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">MongoDB</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/MySQL.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">MySQL</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/postman.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">Postman</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row" style="display: inline-flex;margin-left: 0px;">
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/wamp.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 16px;
-															margin-top: 38px;">WampServer</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/dialogflow.png" alt="Avatar"
-										style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 17px;
-															margin-top: 28px;">DialogFlow Chatbot</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/firebase.png" alt="Avatar"
-										style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 20px;
-															margin-top: 35px;">Firebase</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column" style="padding: unset;">
-						<div class="flip-card" style="margin: 1rem 4rem;border:unset;padding:unset;">
-							<div class="flip-card-inner">
-								<div class="flip-card-front">
-									<img src="images/skills/office.png" alt="Avatar" style="width:120px;height:120px;">
-								</div>
-								<div class="flip-card-back">
-									<p style="text-align: center;
-															font-size: 17px;
-															margin-top: 28px;">Microsoft Office</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                    <p>
+                        Since April 2021, I have been working at Pasti Nyala Sdn Bhd,
+                        developing and supporting customized business applications,
+                        including systems used by the Kuching Port Authority.
+                    </p>
+                </div>
 
-			</article>
+                <div class="facts">
+                    <div class="fact">
+                        <strong>Location</strong>
+                        <span>Kuching, Sarawak</span>
+                    </div>
 
-			<div class="overlayText" style="padding: 1rem;">
-			</div>
-		</div>
+                    <div class="fact">
+                        <strong>Current Role</strong>
+                        <span>Software Engineer</span>
+                    </div>
 
-		<!-- Copyright -->
-		<div id="copyright" style="margin: 1.5rem auto;">
-			<ul>
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
+                    <div class="fact">
+                        <strong>Current Company</strong>
+                        <span>Pasti Nyala Sdn Bhd</span>
+                    </div>
 
-	</div>
+                    <div class="fact">
+                        <strong>Education</strong>
+                        <span>Bachelor of Computer Science</span>
+                    </div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-	<script>
-		function showSignage() {
-			document.getElementById('moreStory').style.display = "block";
-			document.getElementById('lessStory').style.display = "none";
-		}
+                    <div class="fact">
+                        <strong>Primary Backend</strong>
+                        <span>PHP &amp; MySQL</span>
+                    </div>
 
-		function showAdex() {
-			document.getElementById('moreStoryAdex').style.display = "block";
-			document.getElementById('lessStory').style.display = "none";
-		}
+                    <div class="fact">
+                        <strong>Infrastructure</strong>
+                        <span>Linux, Apache &amp; Cron</span>
+                    </div>
+                </div>
 
-		function hideStory() {
-			document.getElementById('moreStory').style.display = "none";
-			// document.getElementById('moreStoryAdex').style.display = "none";
-			document.getElementById('lessStory').style.display = "flex";
-		}
-	</script>
-	<script>
-		var slideIndex = 1;
-		showSlides(slideIndex);
-		
-		function plusSlides(n) {
-		  showSlides(slideIndex += n);
-		}
-		
-		function currentSlide(n) {
-		  showSlides(slideIndex = n);
-		}
-		
-		function showSlides(n) {
-		  var i;
-		  var slides = document.getElementsByClassName("mySlides");
-		  var dots = document.getElementsByClassName("dot");
-		  if (n > slides.length) {slideIndex = 1}    
-		  if (n < 1) {slideIndex = slides.length}
-		  for (i = 0; i < slides.length; i++) {
-			  slides[i].style.display = "none";  
-		  }
-		  for (i = 0; i < dots.length; i++) {
-			  dots[i].className = dots[i].className.replace(" active", "");
-		  }
-		  slides[slideIndex-1].style.display = "block";  
-		  dots[slideIndex-1].className += " active";
-		}
-		</script>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="experience">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">02 / Experience</div>
+                    <h2>Professional experience.</h2>
+                </div>
+
+                <p class="section-intro">
+                    Experience across custom business applications, web development,
+                    databases, automation and technical operations.
+                </p>
+            </div>
+
+            <div class="timeline">
+
+                <article class="job">
+                    <div class="job-date">APR 2021 — PRESENT</div>
+
+                    <div>
+                        <h3>Software Engineer</h3>
+                        <div class="company">Pasti Nyala Sdn Bhd · Kuching, Sarawak</div>
+                        <img src="https://erwinerickson.github.io/images/pnsb.png"
+                             alt="Pasti Nyala Sdn Bhd"
+                             style="height:64px;max-width:180px;object-fit:contain;border-radius:8px;margin-bottom:14px;">
+
+                        <p>
+                            Develop and maintain customized business applications and
+                            supporting systems. Work across application development,
+                            databases, Linux servers, automation and production support.
+                        </p>
+
+                        <ul>
+                            <li>Develop and maintain PHP and MySQL based web applications.</li>
+                            <li>Maintain and troubleshoot production databases and application services.</li>
+                            <li>Develop automated backup, restore, transfer and database synchronization processes.</li>
+                            <li>Use Bash, PHP CLI and Cron to automate recurring operational tasks.</li>
+                            <li>Work with Linux servers, Apache/httpd, SSH/SCP and system logs.</li>
+                            <li>Perform database migration, connectivity troubleshooting and legacy application modernization.</li>
+                            <li>Support systems used in business and port-management operations.</li>
+                        </ul>
+
+                        <div class="tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Bash</span>
+                            <span class="tag">Cron</span>
+                            <span class="tag">Apache</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">SSH/SCP</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="job">
+                    <div class="job-date">MAR 2019 — JAN 2021</div>
+
+                    <div>
+                        <h3>Junior Web Developer cum Technical Support</h3>
+                        <div class="company">Tractive Sdn Bhd</div>
+                        <img src="https://erwinerickson.github.io/images/tractive-logo.png"
+                             alt="Tractive Sdn Bhd"
+                             style="height:64px;max-width:180px;object-fit:contain;border-radius:8px;margin-bottom:14px;">
+
+                        <p>
+                            Worked on digital signage, CMS and customized web solutions,
+                            while also providing technical support for hardware and
+                            deployed systems.
+                        </p>
+
+                        <ul>
+                            <li>Developed application components using Angular 8 and Node.js.</li>
+                            <li>Developed PDF, XLSX and PPT export functionality using third-party packages.</li>
+                            <li>Developed backend services supporting application features.</li>
+                            <li>Integrated Firebase authentication and created CMS template rules.</li>
+                            <li>Created charts for monitoring media usage with Chart.js.</li>
+                            <li>Worked with AWS/CDN for file delivery and deployment-related tasks.</li>
+                            <li>Maintained kiosks and tested software on Windows, Ubuntu and Raspberry Pi environments.</li>
+                        </ul>
+
+                        <div class="tags">
+                            <span class="tag">Angular 8</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Chart.js</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Raspberry Pi</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">03 / Selected Projects</div>
+                    <h2>Things I've worked on.</h2>
+                </div>
+
+                <p class="section-intro">
+                    Selected systems and technical areas from professional and earlier
+                    development experience.
+                </p>
+            </div>
+
+            <div class="projects">
+
+                <article class="project">
+                    <div class="project-number">01</div>
+                    <h3>Port Management System</h3>
+                    <p>
+                        Web-based operational system developed for port-management
+                        activities, supporting the tracking and handling of cargo and
+                        related business processes.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Web Application</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-number">02</div>
+                    <h3>Database Automation</h3>
+                    <p>
+                        Automated backup, transfer, restore and synchronization workflows
+                        using database utilities, shell scripting, SSH/SCP and scheduled
+                        Cron jobs.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Cron</span>
+                        <span class="tag">SSH/SCP</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-number">03</div>
+                    <h3>Legacy System Modernization</h3>
+                    <p>
+                        Modernization and maintenance of legacy PHP applications,
+                        including compatibility work for newer PHP versions and updated
+                        database connectivity.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">PHP 8</span>
+                        <span class="tag">MySQLi</span>
+                        <span class="tag">ODBC</span>
+                        <span class="tag">PhpSpreadsheet</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-number">04</div>
+                    <h3>Bulk Data Synchronization</h3>
+                    <p>
+                        Automated synchronization of selected operational data between
+                        systems, including scheduled execution, data replacement and
+                        logging.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">PHP CLI</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Cron</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-number">05</div>
+                    <img src="https://erwinerickson.github.io/images/sgdev.png"
+                         alt="Digital Signage CMS"
+                         style="width:100%;height:220px;object-fit:contain;border-radius:10px;margin-bottom:18px;">
+                    <h3>Digital Signage CMS</h3>
+                    <p>
+                        Content Management System for remotely managing digital
+                        advertising content, including authentication, template rules
+                        and usage visualization.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Angular 8</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Chart.js</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-number">06</div>
+                    <img src="https://erwinerickson.github.io/images/intego.PNG"
+                         alt="ADEX Dashboard"
+                         style="width:100%;height:220px;object-fit:contain;border-radius:10px;margin-bottom:18px;">
+                    <h3>ADEX Dashboard</h3>
+                    <p>
+                        Web-based advertising planning system used to centralize
+                        available billboard inventory and support digital media
+                        advertisement planning.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Angular 8</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">CDN</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">04 / Technical Skills</div>
+                    <h2>My toolbox.</h2>
+                </div>
+
+                <p class="section-intro">
+                    A combination of application development, database, server and
+                    automation technologies.
+                </p>
+            </div>
+
+            <div class="skill-grid">
+
+                <div class="skill-group">
+                    <h3>LANGUAGES</h3>
+                    <p>PHP · JavaScript · TypeScript · SQL · Bash · HTML5 · CSS · SCSS</p>
+                </div>
+
+                <div class="skill-group">
+                    <h3>WEB DEVELOPMENT</h3>
+                    <p>PHP · Angular · Node.js · JavaScript · REST/API · Joomla · Material UI</p>
+                </div>
+
+                <div class="skill-group">
+                    <h3>DATABASE</h3>
+                    <p>MySQL · MySQLi · ODBC · SQL · Database Backup · Restore · Synchronization</p>
+                </div>
+
+                <div class="skill-group">
+                    <h3>SERVER &amp; LINUX</h3>
+                    <p>Rocky Linux · Linux · Apache/httpd · SSH · SCP · Cron · Server Troubleshooting</p>
+                </div>
+
+                <div class="skill-group">
+                    <h3>AUTOMATION</h3>
+                    <p>Bash Scripts · PHP CLI · Cron Jobs · mysqldump · Automated Restore · Data Transfer</p>
+                </div>
+
+                <div class="skill-group">
+                    <h3>TOOLS &amp; PLATFORMS</h3>
+                    <p>Git · Postman · Jira · Bitbucket · Composer · PhpSpreadsheet · TCPDF · FPDF · AWS</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">05 / Education</div>
+                    <h2>Education.</h2>
+                </div>
+
+                <p class="section-intro">
+                    Formal education in computer science and information technology.
+                </p>
+            </div>
+
+            <div class="education-grid">
+
+                <article class="education-card">
+                    <div class="date">2014 — 2018</div>
+                    <h3>Universiti Malaysia Sarawak (UNIMAS)</h3>
+                    <p>
+                        Bachelor of Computer Science with Honours
+                        (Information Systems)
+                    </p>
+                </article>
+
+                <article class="education-card">
+                    <div class="date">2010 — 2013</div>
+                    <h3>Technology College Sarawak (TCS)</h3>
+                    <p>
+                        Diploma in Computer Science
+                        (Information Technology)
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container contact-box">
+
+            <div>
+                <div class="section-number">06 / Contact</div>
+                <h2>Let's connect.</h2>
+                <p>
+                    Interested in software engineering, web application development,
+                    systems integration or technical projects? Feel free to get in touch.
+                </p>
+            </div>
+
+            <div class="contact-links">
+                <a class="contact-link" href="mailto:erwinerickson92@gmail.com">
+                    Email
+                </a>
+
+                <!-- Replace these URLs with your exact profiles if needed -->
+                <a class="contact-link" href="https://github.com/erwinerickson" target="_blank" rel="noopener">
+                    GitHub
+                </a>
+
+                <a class="contact-link" href="https://my.linkedin.com/in/erwin-erickson-15b713138" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>© 2026 Erwin Erickson. All rights reserved.</div>
+        <div>Software Engineer · Kuching, Sarawak</div>
+    </div>
+</footer>
 
 </body>
-
 </html>
