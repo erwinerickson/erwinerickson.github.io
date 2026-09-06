@@ -3,51 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Erwin Erickson - Software Engineer specializing in web applications, PHP, MySQL, Linux, automation and systems development.">
+    <meta name="description" content="Erwin Erickson — Software Engineer in Kuching, Sarawak, building dependable web applications, database automation, Linux infrastructure and production systems.">
     <meta name="author" content="Erwin Erickson">
+    <meta name="theme-color" content="#07090f">
+    <meta name="color-scheme" content="dark">
     <title>Erwin Erickson | Software Engineer</title>
+    <script>document.documentElement.classList.add('js');</script>
 
-    <!--
-    Image sources retained from the existing GitHub Pages repository:
-    https://erwinerickson.github.io/images/erwin2.png
-    https://erwinerickson.github.io/images/pnsb.png
-    https://erwinerickson.github.io/images/tractive-logo.png
-    https://erwinerickson.github.io/images/sgdev.png
-    https://erwinerickson.github.io/images/intego.PNG
-
-    Other existing image assets remain available under:
-    https://erwinerickson.github.io/images/
--->
-<style>
+    <style>
         :root {
-            --bg: #f6f8f7;
-            --surface: #ffffff;
-            --text: #18211f;
-            --muted: #687572;
-            --line: #dce5e2;
-            --accent: #6cc6a5;
-            --accent-dark: #23866a;
-            --accent-soft: #e6f5ef;
-            --dark: #17211f;
-            --max: 1120px;
-            --radius: 16px;
+            --bg: #07090f;
+            --bg-deep: #040509;
+            --surface: rgba(15, 19, 29, 0.78);
+            --surface-solid: #0f131d;
+            --surface-2: #141a26;
+            --text: #f5f7fb;
+            --muted: #9ca8b9;
+            --soft: #cad2dd;
+            --line: rgba(255, 255, 255, 0.11);
+            --line-strong: rgba(255, 255, 255, 0.2);
+            --cyan: #69f6dc;
+            --cyan-dark: #24cdb2;
+            --violet: #9b7cff;
+            --blue: #58a6ff;
+            --danger: #ff6b91;
+            --max-width: 1240px;
+            --header-height: 76px;
+            --mx: 72vw;
+            --my: 18vh;
+            --radius: 20px;
+            --ease: cubic-bezier(.2, .75, .25, 1);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 24px);
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
+            min-width: 320px;
+            margin: 0;
+            overflow-x: clip;
+            background:
+                radial-gradient(900px circle at var(--mx) var(--my), rgba(105, 246, 220, 0.075), transparent 42%),
+                radial-gradient(750px circle at 8% 38%, rgba(155, 124, 255, 0.07), transparent 44%),
+                var(--bg);
             color: var(--text);
-            line-height: 1.65;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 72px 72px;
+            content: "";
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, .75) 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, .75) 60%, transparent 100%);
+        }
+
+        body::after {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, var(--bg) 0%, transparent 12%, transparent 88%, var(--bg) 100%);
+            content: "";
+            pointer-events: none;
+        }
+
+        ::selection {
+            background: var(--cyan);
+            color: var(--bg-deep);
         }
 
         a {
@@ -55,1032 +99,2300 @@
             text-decoration: none;
         }
 
-        .container {
-            width: min(92%, var(--max));
-            margin: 0 auto;
+        img {
+            display: block;
+            max-width: 100%;
         }
 
-        /* NAVIGATION */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255,255,255,.94);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--line);
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
-        nav {
-            min-height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
+        button {
+            font: inherit;
         }
 
-        .brand {
-            font-size: 20px;
+        :focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 3000;
+            padding: 10px 15px;
+            transform: translateY(-160%);
+            border-radius: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
             font-weight: 800;
-            letter-spacing: 3px;
+            transition: transform .2s ease;
         }
 
-        .brand span {
-            color: var(--accent-dark);
+        .skip-link:focus {
+            transform: translateY(0);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-            font-size: 14px;
-            font-weight: 700;
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2500;
+            width: 100%;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
+            box-shadow: 0 0 18px rgba(105, 246, 220, .65);
         }
 
-        .nav-links a {
-            color: var(--muted);
-            transition: .2s ease;
+        .container {
+            width: min(calc(100% - 48px), var(--max-width));
+            margin-inline: auto;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-dark);
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 78vh;
-            display: flex;
-            align-items: center;
-            padding: 90px 0 70px;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.35fr .65fr;
-            gap: 70px;
-            align-items: center;
+        .mono {
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
         }
 
         .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: var(--accent-dark);
-            background: var(--accent-soft);
-            padding: 8px 14px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            margin: 0 0 20px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            line-height: 1.4;
             text-transform: uppercase;
-            margin-bottom: 22px;
         }
 
         .eyebrow::before {
+            width: 28px;
+            height: 1px;
+            background: currentColor;
+            box-shadow: 0 0 12px currentColor;
             content: "";
-            width: 8px;
-            height: 8px;
-            background: var(--accent-dark);
-            border-radius: 50%;
         }
 
-        h1 {
-            font-size: clamp(46px, 8vw, 88px);
+        .section-shell {
+            position: relative;
+            padding: 120px 0;
+        }
+
+        .section-shell + .section-shell {
+            border-top: 1px solid var(--line);
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 470px);
+            gap: 64px;
+            align-items: end;
+            margin-bottom: 56px;
+        }
+
+        .section-index {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .section-index span {
+            color: var(--muted);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h2 {
+            max-width: 800px;
+            margin-bottom: 0;
+            font-size: clamp(2.6rem, 6vw, 5.8rem);
+            font-weight: 760;
+            letter-spacing: -.065em;
             line-height: .98;
-            letter-spacing: -4px;
-            margin-bottom: 24px;
         }
 
-        .hero h1 span {
+        .section-intro {
+            margin-bottom: 2px;
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+
+        .panel {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .015));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 22px 80px rgba(0, 0, 0, .18);
+            backdrop-filter: blur(16px);
+        }
+
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 2000;
+            border-bottom: 1px solid transparent;
+            transition: background .25s ease, border-color .25s ease;
+        }
+
+        .site-header.is-scrolled {
+            border-color: var(--line);
+            background: rgba(7, 9, 15, .78);
+            backdrop-filter: blur(20px) saturate(135%);
+        }
+
+        .nav {
+            position: relative;
+            display: flex;
+            min-height: var(--header-height);
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: max-content;
+            font-size: .82rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            line-height: 1;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid rgba(105, 246, 220, .5);
+            background: rgba(105, 246, 220, .08);
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .76rem;
+            letter-spacing: -.04em;
+            box-shadow: inset 0 0 18px rgba(105, 246, 220, .06), 0 0 24px rgba(105, 246, 220, .07);
+            clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+        }
+
+        .brand-slash {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-links a {
+            position: relative;
             display: block;
-            color: var(--accent-dark);
+            padding: 12px 13px;
+            color: var(--muted);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transition: color .2s ease;
+        }
+
+        .nav-links a::after {
+            position: absolute;
+            right: 13px;
+            bottom: 5px;
+            left: 13px;
+            height: 1px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: var(--cyan);
+            box-shadow: 0 0 9px var(--cyan);
+            content: "";
+            transition: transform .25s var(--ease);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.is-active {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.is-active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            gap: 10px;
+            padding: 0 16px;
+            border: 1px solid rgba(105, 246, 220, .42);
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+        }
+
+        .nav-cta:hover {
+            background: var(--cyan);
+            color: var(--bg-deep);
+            box-shadow: 0 0 30px rgba(105, 246, 220, .18);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            border: 1px solid var(--line-strong);
+            background: rgba(255, 255, 255, .03);
+            color: var(--text);
+        }
+
+        .menu-toggle span,
+        .menu-toggle::before,
+        .menu-toggle::after {
+            display: block;
+            width: 19px;
+            height: 1px;
+            margin: 0 auto;
+            background: currentColor;
+            content: "";
+            transition: transform .25s ease, opacity .2s ease;
+        }
+
+        .menu-toggle span {
+            margin-block: 5px;
+        }
+
+        .menu-toggle[aria-expanded="true"]::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] span {
+            opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"]::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            display: grid;
+            min-height: 100svh;
+            align-items: center;
+            padding: calc(var(--header-height) + 70px) 0 74px;
+        }
+
+        .hero::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(105, 246, 220, .45), rgba(155, 124, 255, .35), transparent);
+            content: "";
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(360px, .75fr);
+            gap: clamp(54px, 8vw, 112px);
+            align-items: center;
+        }
+
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            padding: 8px 12px;
+            border: 1px solid rgba(105, 246, 220, .2);
+            background: rgba(105, 246, 220, .045);
+            color: var(--soft);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 0 4px rgba(105, 246, 220, .08), 0 0 14px var(--cyan);
+            animation: pulse 2.6s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 0 0 26px;
+            font-size: clamp(4.4rem, 10.8vw, 10.2rem);
+            font-weight: 800;
+            letter-spacing: -.085em;
+            line-height: .77;
+            text-transform: uppercase;
+        }
+
+        .hero h1 .first-name {
+            display: block;
+            color: var(--text);
+        }
+
+        .hero h1 .last-name {
+            display: block;
+            padding-bottom: .09em;
+            background: linear-gradient(100deg, var(--cyan) 3%, #d6fff8 42%, var(--violet) 92%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 28px rgba(105, 246, 220, .1));
+        }
+
+        .hero-role {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 0 0 18px;
+            color: var(--soft);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: clamp(.8rem, 1.4vw, .98rem);
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .hero-role::after {
+            width: min(120px, 16vw);
+            height: 1px;
+            background: linear-gradient(90deg, var(--line-strong), transparent);
+            content: "";
         }
 
         .hero-description {
-            max-width: 720px;
-            font-size: 19px;
-            color: var(--muted);
+            max-width: 710px;
             margin-bottom: 32px;
+            color: var(--muted);
+            font-size: clamp(1.04rem, 1.8vw, 1.22rem);
+            line-height: 1.72;
         }
 
-        .buttons {
+        .hero-description strong {
+            color: var(--text);
+            font-weight: 650;
+        }
+
+        .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
+            margin-bottom: 40px;
         }
 
         .button {
             display: inline-flex;
+            min-height: 52px;
             align-items: center;
             justify-content: center;
-            min-height: 46px;
+            gap: 11px;
             padding: 0 20px;
-            border-radius: 10px;
-            border: 1px solid var(--dark);
-            background: var(--dark);
-            color: white;
-            font-size: 14px;
-            font-weight: 700;
-            transition: .2s ease;
+            border: 1px solid transparent;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            transition: transform .25s var(--ease), box-shadow .25s ease, background .25s ease, border-color .25s ease;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
 
         .button:hover {
-            transform: translateY(-2px);
-            opacity: .9;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 34px rgba(105, 246, 220, .18);
         }
 
         .button.secondary {
-            background: transparent;
-            color: var(--dark);
-            border-color: var(--line);
+            border-color: var(--line-strong);
+            background: rgba(255, 255, 255, .035);
+            color: var(--text);
         }
 
-        .hero-card {
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 28px;
-            box-shadow: 0 18px 50px rgba(25, 45, 40, .07);
+        .button.secondary:hover {
+            border-color: rgba(105, 246, 220, .45);
+            background: rgba(105, 246, 220, .07);
         }
 
-        .hero-card-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-            color: var(--muted);
-            margin-bottom: 18px;
+        .button svg,
+        .contact-link svg {
+            width: 17px;
+            height: 17px;
+            flex: 0 0 auto;
         }
 
-        .hero-card ul {
+        .hero-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
             list-style: none;
         }
 
-        .hero-card li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--line);
-            font-weight: 700;
+        .hero-metrics li {
+            min-width: 132px;
+            padding: 13px 15px;
+            border-left: 1px solid var(--line-strong);
+            background: linear-gradient(90deg, rgba(255, 255, 255, .025), transparent);
         }
 
-        .hero-card li:last-child {
-            border-bottom: 0;
+        .hero-metrics strong {
+            display: block;
+            color: var(--text);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .82rem;
+            font-weight: 800;
+            letter-spacing: .04em;
         }
 
-        /* SECTIONS */
-        section {
-            padding: 90px 0;
+        .hero-metrics span {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: .76rem;
         }
 
-        .section-heading {
+        .hero-visual {
+            position: relative;
+            width: min(100%, 465px);
+            justify-self: end;
+            perspective: 1000px;
+        }
+
+        .portrait-shell {
+            position: relative;
+            padding: 1px;
+            background: linear-gradient(145deg, rgba(105, 246, 220, .72), rgba(255, 255, 255, .08) 48%, rgba(155, 124, 255, .64));
+            box-shadow: 0 38px 100px rgba(0, 0, 0, .38), 0 0 80px rgba(105, 246, 220, .07);
+            transition: transform .25s ease-out;
+            clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px));
+            transform-style: preserve-3d;
+        }
+
+        .portrait-panel {
+            position: relative;
+            overflow: hidden;
+            min-height: 585px;
+            background:
+                linear-gradient(180deg, rgba(7, 9, 15, .02), rgba(7, 9, 15, .38)),
+                #e7edf0;
+            clip-path: inherit;
+        }
+
+        .portrait-panel::before {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(90deg, rgba(105, 246, 220, .12), transparent 32%, transparent 72%, rgba(155, 124, 255, .13)),
+                linear-gradient(180deg, transparent 65%, rgba(7, 9, 15, .86));
+            content: "";
+            pointer-events: none;
+        }
+
+        .portrait-panel::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            width: 1px;
+            background: linear-gradient(transparent, var(--violet), transparent);
+            content: "";
+            opacity: .7;
+            animation: scan 5s ease-in-out infinite;
+        }
+
+        .portrait-panel img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: saturate(.85) contrast(1.03);
+            mix-blend-mode: multiply;
+        }
+
+        .portrait-code {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border: 1px solid rgba(7, 9, 15, .18);
+            background: rgba(237, 243, 245, .72);
+            color: var(--bg-deep);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .69rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            backdrop-filter: blur(9px);
+        }
+
+        .portrait-caption {
+            position: absolute;
+            right: 26px;
+            bottom: 26px;
+            left: 26px;
+            z-index: 3;
             display: flex;
             align-items: end;
             justify-content: space-between;
-            gap: 30px;
-            margin-bottom: 42px;
+            gap: 20px;
         }
 
-        .section-number {
-            color: var(--accent-dark);
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
+        .portrait-caption small {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: .13em;
             text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
-        h2 {
-            font-size: clamp(32px, 5vw, 52px);
-            letter-spacing: -2px;
-            line-height: 1.1;
+        .portrait-caption strong {
+            display: block;
+            max-width: 230px;
+            font-size: 1.02rem;
+            line-height: 1.4;
         }
 
-        .section-intro {
-            max-width: 540px;
+        .portrait-caption .coordinates {
+            color: #c4cbd7;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .66rem;
+            line-height: 1.5;
+            text-align: right;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: -32px;
+            bottom: 70px;
+            z-index: 4;
+            width: 210px;
+            padding: 16px 18px;
+            border: 1px solid rgba(105, 246, 220, .3);
+            background: rgba(7, 9, 15, .82);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, .34);
+            backdrop-filter: blur(18px);
+        }
+
+        .floating-card::before {
+            display: block;
+            width: 38px;
+            height: 2px;
+            margin-bottom: 13px;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+            content: "";
+        }
+
+        .floating-card small {
+            display: block;
             color: var(--muted);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .64rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
-        /* ABOUT */
-        .about-grid {
+        .floating-card strong {
+            display: block;
+            margin-top: 5px;
+            color: var(--text);
+            font-size: .9rem;
+            line-height: 1.45;
+        }
+
+        .side-code {
+            position: absolute;
+            top: 16px;
+            right: -62px;
+            color: rgba(255, 255, 255, .32);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        .tech-strip {
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, .015);
+        }
+
+        .tech-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 34s linear infinite;
+        }
+
+        .tech-list {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tech-list li {
+            display: flex;
+            min-height: 64px;
+            align-items: center;
+            gap: 18px;
+            padding: 0 28px;
+            color: #aeb8c7;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .tech-list li::before {
+            width: 5px;
+            height: 5px;
+            transform: rotate(45deg);
+            background: var(--cyan);
+            box-shadow: 0 0 10px rgba(105, 246, 220, .7);
+            content: "";
+        }
+
+        /* About */
+        .about-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: minmax(0, 1.2fr) minmax(390px, .8fr);
+            gap: 20px;
         }
 
-        .about-text {
-            font-size: 18px;
+        .about-copy {
+            position: relative;
+            padding: clamp(28px, 5vw, 54px);
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+
+        .about-copy::after {
+            position: absolute;
+            right: -80px;
+            bottom: -130px;
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(105, 246, 220, .1);
+            border-radius: 50%;
+            box-shadow: 0 0 0 45px rgba(105, 246, 220, .02), 0 0 0 90px rgba(155, 124, 255, .018);
+            content: "";
+            pointer-events: none;
+        }
+
+        .about-lead {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            margin-bottom: 30px;
+            color: var(--text);
+            font-size: clamp(1.4rem, 2.7vw, 2.3rem);
+            font-weight: 580;
+            letter-spacing: -.035em;
+            line-height: 1.35;
+        }
+
+        .about-copy p:not(.about-lead) {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin-bottom: 17px;
             color: var(--muted);
+            font-size: 1.02rem;
         }
 
-        .about-text p + p {
-            margin-top: 18px;
+        .about-copy p:last-child {
+            margin-bottom: 0;
         }
 
-        .facts {
+        .facts-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
         .fact {
-            background: var(--surface);
+            position: relative;
+            min-height: 160px;
+            padding: 23px;
+            overflow: hidden;
             border: 1px solid var(--line);
-            border-radius: 14px;
-            padding: 22px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .025);
+            transition: transform .25s var(--ease), border-color .25s ease, background .25s ease;
+        }
+
+        .fact:hover {
+            transform: translateY(-4px);
+            border-color: rgba(105, 246, 220, .3);
+            background: rgba(105, 246, 220, .04);
+        }
+
+        .fact .fact-number {
+            display: block;
+            margin-bottom: 30px;
+            color: rgba(105, 246, 220, .55);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
         }
 
         .fact strong {
             display: block;
-            font-size: 15px;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            font-size: .93rem;
+            line-height: 1.4;
         }
 
         .fact span {
+            display: block;
             color: var(--muted);
-            font-size: 14px;
+            font-size: .82rem;
+            line-height: 1.5;
         }
 
-        /* EXPERIENCE */
-        .experience {
-            background: var(--surface);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+        /* Experience */
+        .experience-layout {
+            display: grid;
+            grid-template-columns: 310px minmax(0, 1fr);
+            gap: clamp(44px, 8vw, 100px);
+            align-items: start;
+        }
+
+        .experience-aside {
+            position: sticky;
+            top: calc(var(--header-height) + 36px);
+        }
+
+        .experience-aside h2 {
+            font-size: clamp(2.8rem, 5vw, 5.2rem);
+        }
+
+        .experience-aside p {
+            margin: 24px 0 0;
+            color: var(--muted);
+            font-size: .98rem;
         }
 
         .timeline {
+            position: relative;
             display: grid;
             gap: 24px;
+            padding-left: 34px;
         }
 
-        .job {
-            display: grid;
-            grid-template-columns: 210px 1fr;
-            gap: 40px;
-            padding: 30px 0;
-            border-bottom: 1px solid var(--line);
+        .timeline::before {
+            position: absolute;
+            top: 14px;
+            bottom: 14px;
+            left: 5px;
+            width: 1px;
+            background: linear-gradient(var(--cyan), rgba(155, 124, 255, .42), transparent);
+            content: "";
         }
 
-        .job:last-child {
-            border-bottom: 0;
+        .job-card {
+            position: relative;
+            padding: clamp(26px, 4vw, 42px);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(255, 255, 255, .044), rgba(255, 255, 255, .014));
+            transition: border-color .25s ease, transform .25s var(--ease);
+        }
+
+        .job-card::before {
+            position: absolute;
+            top: 42px;
+            left: -34px;
+            width: 11px;
+            height: 11px;
+            transform: translateX(-1px) rotate(45deg);
+            border: 2px solid var(--bg);
+            background: var(--cyan);
+            box-shadow: 0 0 16px rgba(105, 246, 220, .72);
+            content: "";
+        }
+
+        .job-card:nth-child(2)::before {
+            background: var(--violet);
+            box-shadow: 0 0 16px rgba(155, 124, 255, .64);
+        }
+
+        .job-card:hover {
+            transform: translateX(5px);
+            border-color: rgba(105, 246, 220, .28);
+        }
+
+        .job-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
         }
 
         .job-date {
-            color: var(--accent-dark);
-            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .72rem;
             font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
-        .job h3 {
-            font-size: 25px;
-            margin-bottom: 4px;
+        .job-card:nth-child(2) .job-date {
+            color: #beaaff;
+        }
+
+        .job-card h3 {
+            max-width: 630px;
+            margin-bottom: 7px;
+            font-size: clamp(1.45rem, 3vw, 2.15rem);
+            letter-spacing: -.035em;
+            line-height: 1.2;
         }
 
         .company {
             color: var(--muted);
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-size: .94rem;
+            font-weight: 650;
         }
 
-        .job p {
+        .company-logo {
+            display: grid;
+            width: 116px;
+            min-width: 116px;
+            height: 66px;
+            padding: 10px;
+            place-items: center;
+            border-radius: 10px;
+            background: #f5f7f9;
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .job-card > p {
+            margin-bottom: 20px;
             color: var(--muted);
-            margin-bottom: 16px;
         }
 
-        .job ul {
-            padding-left: 20px;
-            color: var(--muted);
+        .job-card ul {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
-        .job li + li {
-            margin-top: 7px;
+        .job-card li {
+            position: relative;
+            padding-left: 23px;
+            color: var(--soft);
+            font-size: .92rem;
+            line-height: 1.65;
+        }
+
+        .job-card li::before {
+            position: absolute;
+            top: .68em;
+            left: 2px;
+            width: 7px;
+            height: 7px;
+            border: 1px solid var(--cyan);
+            content: "";
+        }
+
+        .job-card:nth-child(2) li::before {
+            border-color: var(--violet);
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 18px;
+            margin-top: 24px;
         }
 
         .tag {
-            background: var(--accent-soft);
-            color: var(--accent-dark);
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 800;
+            display: inline-flex;
+            min-height: 29px;
+            align-items: center;
+            padding: 0 10px;
+            border: 1px solid rgba(105, 246, 220, .18);
+            background: rgba(105, 246, 220, .045);
+            color: #aef8ea;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .03em;
         }
 
-        /* PROJECTS */
-        .projects {
+        /* Projects */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
-        .project {
-            background: var(--surface);
+        .project-card {
+            position: relative;
+            display: flex;
+            min-height: 360px;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            padding: clamp(26px, 4vw, 42px);
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            padding: 28px;
-            transition: .2s ease;
+            background: rgba(255, 255, 255, .024);
+            transition: transform .3s var(--ease), border-color .3s ease, background .3s ease;
         }
 
-        .project:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(25, 45, 40, .08);
+        .project-card::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--violet));
+            content: "";
+            transition: width .45s var(--ease);
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(105, 246, 220, .28);
+            background: rgba(255, 255, 255, .038);
+        }
+
+        .project-card:hover::before {
+            width: 100%;
+        }
+
+        .project-card.featured {
+            grid-column: 1 / -1;
+            min-height: 440px;
+            background:
+                radial-gradient(circle at 88% 20%, rgba(105, 246, 220, .13), transparent 28%),
+                radial-gradient(circle at 62% 82%, rgba(155, 124, 255, .1), transparent 31%),
+                rgba(255, 255, 255, .028);
+        }
+
+        .project-card.featured .project-content {
+            max-width: 760px;
+        }
+
+        .project-card.featured h3 {
+            max-width: 850px;
+            font-size: clamp(2.8rem, 6.8vw, 6.5rem);
+        }
+
+        .project-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 54px;
         }
 
         .project-number {
-            color: var(--accent-dark);
-            font-size: 12px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .75rem;
             font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
 
-        .project h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .project p {
+        .project-type {
+            padding: 6px 9px;
+            border: 1px solid var(--line);
             color: var(--muted);
-            font-size: 15px;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .63rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
         }
 
-        /* SKILLS */
-        .skills {
-            background: var(--dark);
-            color: white;
+        .project-card h3 {
+            margin-bottom: 16px;
+            font-size: clamp(1.65rem, 3.4vw, 3rem);
+            letter-spacing: -.045em;
+            line-height: 1.1;
         }
 
-        .skills .section-number {
-            color: var(--accent);
+        .project-card p {
+            max-width: 650px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: .96rem;
         }
 
-        .skills .section-intro {
-            color: #b7c2bf;
+        .project-card .tags {
+            margin-top: 32px;
+        }
+
+        .project-visual {
+            position: relative;
+            height: 220px;
+            margin: -14px -14px 28px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #e9edf2;
+        }
+
+        .project-visual::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, rgba(105, 246, 220, .05), rgba(155, 124, 255, .11));
+            content: "";
+            pointer-events: none;
+        }
+
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            padding: 18px;
+            object-fit: contain;
+            transition: transform .5s var(--ease);
+        }
+
+        .project-card:hover .project-visual img {
+            transform: scale(1.035);
+        }
+
+        /* Skills */
+        .skills-shell {
+            background:
+                linear-gradient(rgba(4, 5, 9, .92), rgba(4, 5, 9, .96)),
+                url("https://erwinerickson.github.io/images/uhdblack.jpg") center / cover fixed;
+        }
+
+        .skills-layout {
+            display: grid;
+            grid-template-columns: minmax(280px, .68fr) minmax(0, 1.32fr);
+            gap: clamp(45px, 8vw, 110px);
+            align-items: start;
+        }
+
+        .skills-copy {
+            position: sticky;
+            top: calc(var(--header-height) + 36px);
+        }
+
+        .skills-copy h2 {
+            margin-bottom: 26px;
+            font-size: clamp(2.9rem, 5.7vw, 5.7rem);
+        }
+
+        .skills-copy p {
+            max-width: 410px;
+            color: var(--muted);
+        }
+
+        .stack-core {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 28px;
+        }
+
+        .stack-core span {
+            padding: 8px 11px;
+            border: 1px solid rgba(155, 124, 255, .24);
+            background: rgba(155, 124, 255, .06);
+            color: #cfc2ff;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .69rem;
+            font-weight: 700;
         }
 
         .skill-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
         .skill-group {
-            border: 1px solid #34423e;
-            border-radius: 14px;
-            padding: 24px;
+            min-height: 220px;
+            padding: 27px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(15, 19, 29, .68);
+            backdrop-filter: blur(14px);
+            transition: border-color .25s ease, background .25s ease;
+        }
+
+        .skill-group:hover {
+            border-color: rgba(155, 124, 255, .34);
+            background: rgba(21, 25, 38, .8);
+        }
+
+        .skill-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
         .skill-group h3 {
-            color: var(--accent);
-            font-size: 15px;
-            margin-bottom: 15px;
+            margin: 0;
+            color: var(--text);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .78rem;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+        }
+
+        .skill-icon {
+            display: grid;
+            width: 31px;
+            height: 31px;
+            place-items: center;
+            border: 1px solid rgba(105, 246, 220, .28);
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .68rem;
+            font-weight: 800;
         }
 
         .skill-group p {
-            color: #d3dcda;
-            line-height: 1.9;
+            margin: 0;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.85;
         }
 
-        /* EDUCATION */
+        /* Education */
         .education-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
         .education-card {
-            background: var(--surface);
+            display: grid;
+            grid-template-columns: 94px minmax(0, 1fr);
+            gap: 26px;
+            align-items: center;
+            min-height: 260px;
+            padding: clamp(26px, 4vw, 40px);
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            padding: 28px;
+            background: rgba(255, 255, 255, .025);
+            transition: transform .25s var(--ease), border-color .25s ease;
         }
 
-        .education-card .date {
-            color: var(--accent-dark);
-            font-size: 13px;
+        .education-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(105, 246, 220, .25);
+        }
+
+        .education-logo {
+            display: grid;
+            width: 94px;
+            height: 94px;
+            padding: 15px;
+            place-items: center;
+            border-radius: 18px;
+            background: #f3f5f7;
+        }
+
+        .education-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .education-date {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--cyan);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .7rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            letter-spacing: .12em;
         }
 
         .education-card h3 {
-            font-size: 21px;
-            margin-bottom: 7px;
+            margin-bottom: 9px;
+            font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+            letter-spacing: -.025em;
+            line-height: 1.25;
         }
 
         .education-card p {
+            margin: 0;
             color: var(--muted);
+            font-size: .92rem;
+            line-height: 1.65;
         }
 
-        /* CONTACT */
-        .contact {
-            background: var(--accent-soft);
+        /* Contact */
+        .contact-shell {
+            padding-bottom: 50px;
         }
 
-        .contact-box {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 40px;
-            align-items: center;
+        .contact-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(38px, 8vw, 92px);
+            border: 1px solid rgba(105, 246, 220, .23);
+            background:
+                radial-gradient(circle at 88% 15%, rgba(155, 124, 255, .18), transparent 28%),
+                radial-gradient(circle at 10% 100%, rgba(105, 246, 220, .14), transparent 34%),
+                rgba(15, 19, 29, .72);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .06);
+            clip-path: polygon(0 0, calc(100% - 38px) 0, 100% 38px, 100% 100%, 38px 100%, 0 calc(100% - 38px));
         }
 
-        .contact-box h2 {
-            margin-bottom: 12px;
+        .contact-card::after {
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 370px;
+            height: 370px;
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 50%;
+            box-shadow: 0 0 0 45px rgba(255, 255, 255, .018), 0 0 0 90px rgba(255, 255, 255, .01);
+            content: "";
+            pointer-events: none;
         }
 
-        .contact-box p {
+        .contact-card h2 {
+            position: relative;
+            z-index: 1;
+            max-width: 980px;
+            margin-bottom: 25px;
+            font-size: clamp(3.4rem, 9vw, 9rem);
+            letter-spacing: -.08em;
+            line-height: .87;
+        }
+
+        .contact-card h2 span {
+            background: linear-gradient(90deg, var(--cyan), #d9fff9 40%, var(--violet));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-card > p {
+            position: relative;
+            z-index: 1;
+            max-width: 660px;
+            margin-bottom: 35px;
             color: var(--muted);
-            max-width: 650px;
+            font-size: 1.05rem;
         }
 
         .contact-links {
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 11px;
         }
 
         .contact-link {
-            background: white;
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            padding: 11px 15px;
-            font-size: 14px;
-            font-weight: 700;
+            display: inline-flex;
+            min-height: 50px;
+            align-items: center;
+            gap: 10px;
+            padding: 0 17px;
+            border: 1px solid var(--line-strong);
+            background: rgba(255, 255, 255, .035);
+            color: var(--text);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .75rem;
+            font-weight: 750;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            transition: transform .22s var(--ease), border-color .22s ease, background .22s ease;
         }
 
-        /* FOOTER */
-        footer {
-            background: var(--dark);
-            color: #aebbb7;
-            padding: 28px 0;
-            font-size: 13px;
+        .contact-link:hover {
+            transform: translateY(-3px);
+            border-color: rgba(105, 246, 220, .5);
+            background: rgba(105, 246, 220, .075);
+        }
+
+        .site-footer {
+            padding: 28px 0 34px;
         }
 
         .footer-inner {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 24px;
+            color: var(--muted);
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+            font-size: .7rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 850px) {
+        .footer-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .footer-status::before {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+            content: "";
+        }
+
+        .js [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .75s var(--ease), transform .75s var(--ease);
+        }
+
+        .js [data-reveal].is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        [data-reveal-delay="1"] { transition-delay: .08s; }
+        [data-reveal-delay="2"] { transition-delay: .16s; }
+        [data-reveal-delay="3"] { transition-delay: .24s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: .75; transform: scale(.92); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+
+        @keyframes scan {
+            0%, 100% { transform: translateX(0); opacity: .35; }
+            50% { transform: translateX(-400px); opacity: .85; }
+        }
+
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 1160px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1.1fr) minmax(320px, .72fr);
+                gap: 52px;
+            }
+
+            .floating-card {
+                right: -12px;
+            }
+
+            .side-code {
+                display: none;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .facts-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            .fact {
+                min-height: 150px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            :root {
+                --header-height: 68px;
+            }
+
+            .container {
+                width: min(calc(100% - 36px), var(--max-width));
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
             .nav-links {
+                position: absolute;
+                top: calc(100% + 1px);
+                right: -18px;
+                left: -18px;
+                display: grid;
+                gap: 0;
+                padding: 14px 18px 22px;
+                visibility: hidden;
+                transform: translateY(-12px);
+                border-bottom: 1px solid var(--line);
+                background: rgba(7, 9, 15, .97);
+                opacity: 0;
+                box-shadow: 0 22px 50px rgba(0, 0, 0, .35);
+                transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.is-open {
+                visibility: visible;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-links a {
+                padding: 14px 8px;
+                border-bottom: 1px solid rgba(255, 255, 255, .065);
+                font-size: .78rem;
+            }
+
+            .nav-links li:last-child a {
+                border-bottom: 0;
+            }
+
+            .nav-links a::after {
                 display: none;
             }
 
             .hero {
                 min-height: auto;
-                padding-top: 70px;
-            }
-
-            .hero-grid,
-            .about-grid,
-            .contact-box {
-                grid-template-columns: 1fr;
+                padding-top: calc(var(--header-height) + 76px);
             }
 
             .hero-grid {
-                gap: 35px;
-            }
-
-            .job {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 68px;
             }
 
-            .projects,
-            .skill-grid,
-            .education-grid {
+            .hero h1 {
+                font-size: clamp(4.2rem, 15vw, 8rem);
+            }
+
+            .hero-visual {
+                width: min(88%, 500px);
+                justify-self: center;
+            }
+
+            .portrait-panel {
+                min-height: 620px;
+            }
+
+            .section-shell {
+                padding: 92px 0;
+            }
+
+            .section-head {
                 grid-template-columns: 1fr;
-            }
-
-            .section-heading {
-                display: block;
+                gap: 24px;
+                margin-bottom: 42px;
             }
 
             .section-intro {
-                margin-top: 15px;
+                max-width: 640px;
+            }
+
+            .facts-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .experience-layout,
+            .skills-layout {
+                grid-template-columns: 1fr;
+                gap: 46px;
+            }
+
+            .experience-aside,
+            .skills-copy {
+                position: static;
+            }
+
+            .experience-aside p,
+            .skills-copy p {
+                max-width: 650px;
+            }
+
+            .project-card.featured {
+                min-height: 400px;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 520px) {
-            h1 {
-                letter-spacing: -2px;
+        @media (max-width: 680px) {
+            .container {
+                width: min(calc(100% - 28px), var(--max-width));
             }
 
-            section {
-                padding: 65px 0;
+            .brand-text {
+                display: none;
             }
 
-            .facts {
+            .hero {
+                padding-top: calc(var(--header-height) + 54px);
+            }
+
+            .hero-status {
+                font-size: .64rem;
+                letter-spacing: .07em;
+            }
+
+            .hero h1 {
+                margin-bottom: 24px;
+                font-size: clamp(3.75rem, 19vw, 6.2rem);
+                line-height: .8;
+            }
+
+            .hero-role {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .hero-role::after {
+                width: 80px;
+            }
+
+            .hero-actions {
+                display: grid;
                 grid-template-columns: 1fr;
             }
 
-            .hero-description {
-                font-size: 17px;
+            .button {
+                width: 100%;
+            }
+
+            .hero-metrics {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero-metrics li {
+                min-width: 0;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+
+            .portrait-panel {
+                min-height: min(135vw, 575px);
+            }
+
+            .floating-card {
+                right: 12px;
+                bottom: 82px;
+                width: 190px;
+            }
+
+            .portrait-caption {
+                right: 20px;
+                bottom: 21px;
+                left: 20px;
+            }
+
+            .portrait-caption .coordinates {
+                display: none;
+            }
+
+            .section-shell {
+                padding: 76px 0;
+            }
+
+            h2 {
+                font-size: clamp(2.45rem, 13vw, 4rem);
+            }
+
+            .about-copy {
+                padding: 26px;
+            }
+
+            .facts-grid,
+            .projects-grid,
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card,
+            .project-card.featured {
+                grid-column: auto;
+                min-height: 360px;
+            }
+
+            .project-card.featured h3 {
+                font-size: clamp(2.55rem, 13vw, 4.3rem);
+            }
+
+            .project-topline {
+                margin-bottom: 40px;
+            }
+
+            .timeline {
+                padding-left: 23px;
+            }
+
+            .timeline::before {
+                left: 4px;
+            }
+
+            .job-card::before {
+                left: -24px;
+            }
+
+            .job-top {
+                display: grid;
+            }
+
+            .company-logo {
+                width: 104px;
+                min-width: 104px;
+                height: 58px;
+                grid-row: 1;
+            }
+
+            .education-card {
+                grid-template-columns: 68px minmax(0, 1fr);
+                gap: 18px;
+                min-height: 220px;
+            }
+
+            .education-logo {
+                width: 68px;
+                height: 68px;
+                padding: 10px;
+                border-radius: 13px;
+            }
+
+            .contact-card h2 {
+                font-size: clamp(3.15rem, 17vw, 5.4rem);
+            }
+
+            .contact-links {
+                display: grid;
+            }
+
+            .contact-link {
+                justify-content: center;
             }
 
             .footer-inner {
+                align-items: flex-start;
                 flex-direction: column;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fact {
+                min-height: 140px;
+            }
+
+            .portrait-code,
+            .floating-card {
+                display: none;
+            }
+
+            .education-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .js [data-reveal] {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-<header>
-    <div class="container">
-        <nav>
-            <a href="#top" class="brand">ERWIN<span>.</span></a>
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <nav class="nav" aria-label="Primary navigation">
+                <a class="brand" href="#top" aria-label="Erwin Erickson, back to top">
+                    <span class="brand-mark" aria-hidden="true">EE</span>
+                    <span class="brand-text">ERWIN<span class="brand-slash">//</span>ENGINEER</span>
+                </a>
 
-            <ul class="nav-links">
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#experience">EXPERIENCE</a></li>
-                <li><a href="#projects">PROJECTS</a></li>
-                <li><a href="#skills">SKILLS</a></li>
-                <li><a href="#education">EDUCATION</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main id="top">
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container hero-grid">
-
-            <div>
-                <div class="eyebrow">Software Engineer</div>
-
-                <h1>
-                    Erwin
-                    <span>Erickson</span>
-                </h1>
-
-                <p class="hero-description">
-                    Software Engineer focused on building and maintaining web applications,
-                    databases, automation processes and production systems.
-                    Experienced across PHP, MySQL, JavaScript, Linux, scripting and
-                    system integration.
-                </p>
-
-                <div class="buttons">
-                    <!-- Replace these files with your latest documents -->
-                    <a class="button" href="https://drive.google.com/file/d/1mCb2yfbmS6jcmGpLDcJpWZlGx0QvtpVT/view?usp=sharing" target="_blank">View Resume</a>
-                    <a class="button secondary" href="https://drive.google.com/file/d/1rOzmje07xZDE-nq2P08XLj3Ttxc0-pD_/view?usp=sharing" target="_blank">View CV</a>
-                    <a class="button secondary" href="#contact">Contact Me</a>
-                </div>
-            </div>
-
-            <aside class="hero-card">
-                <img src="https://erwinerickson.github.io/images/erwin2.png"
-                     alt="Erwin Erickson"
-                     style="width:100%;max-height:320px;object-fit:cover;border-radius:12px;margin-bottom:22px;">
-                <div class="hero-card-title">Core Focus</div>
-                <ul>
-                    <li>Web Application Development</li>
-                    <li>PHP &amp; MySQL</li>
-                    <li>Linux &amp; Server Administration</li>
-                    <li>Database Automation</li>
-                    <li>System Integration</li>
-                    <li>Production Support</li>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
                 </ul>
-            </aside>
 
+                <a class="nav-cta" href="#contact">
+                    Start a conversation
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+                    <span></span>
+                </button>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
+    <main id="main-content">
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="hero-status" data-reveal>
+                        <span class="status-dot" aria-hidden="true"></span>
+                        Kuching, Sarawak / UTC+8
+                    </div>
 
-            <div class="section-heading">
-                <div>
-                    <div class="section-number">01 / About</div>
-                    <h2>Building systems that work.</h2>
+                    <h1 id="hero-title" data-reveal data-reveal-delay="1">
+                        <span class="first-name">Erwin</span>
+                        <span class="last-name">Erickson</span>
+                    </h1>
+
+                    <p class="hero-role" data-reveal data-reveal-delay="2">Software Engineer / Systems Builder</p>
+
+                    <p class="hero-description" data-reveal data-reveal-delay="2">
+                        I build and maintain the systems behind real operations — from <strong>PHP and MySQL applications</strong> to Linux infrastructure, automation and production support.
+                    </p>
+
+                    <div class="hero-actions" data-reveal data-reveal-delay="3">
+                        <a class="button" href="#projects">
+                            Explore projects
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                            </svg>
+                        </a>
+                        <a class="button secondary" href="https://drive.google.com/file/d/1mCb2yfbmS6jcmGpLDcJpWZlGx0QvtpVT/view?usp=sharing" target="_blank" rel="noopener">
+                            View resume
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                <path d="M14 5h5v5M19 5l-9 9"/><path d="M19 13v6H5V5h6"/>
+                            </svg>
+                        </a>
+                        <a class="button secondary" href="https://drive.google.com/file/d/1rOzmje07xZDE-nq2P08XLj3Ttxc0-pD_/view?usp=sharing" target="_blank" rel="noopener">View CV</a>
+                    </div>
+
+                    <ul class="hero-metrics" aria-label="Professional summary" data-reveal data-reveal-delay="3">
+                        <li><strong>2019 → NOW</strong><span>Professional experience</span></li>
+                        <li><strong>PHP / MYSQL</strong><span>Primary stack</span></li>
+                        <li><strong>LINUX / CRON</strong><span>Operations &amp; automation</span></li>
+                    </ul>
                 </div>
 
-                <p class="section-intro">
-                    A practical software engineer with experience spanning application
-                    development, databases, infrastructure, automation and technical support.
-                </p>
+                <div class="hero-visual" data-reveal data-reveal-delay="2">
+                    <div class="portrait-shell" id="portrait-shell">
+                        <div class="portrait-panel">
+                            <img src="https://erwinerickson.github.io/images/erwin2.png" alt="Portrait of Erwin Erickson" width="429" height="581" fetchpriority="high">
+                            <div class="portrait-code">ID // EE-092</div>
+                            <div class="portrait-caption">
+                                <div>
+                                    <small>Current role</small>
+                                    <strong>Software Engineer at Pasti Nyala Sdn Bhd</strong>
+                                </div>
+                                <div class="coordinates" aria-label="Location coordinates">01.5533° N<br>110.3592° E</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="floating-card" aria-hidden="true">
+                        <small>Core focus</small>
+                        <strong>Reliable systems.<br>Practical automation.</strong>
+                    </div>
+                    <div class="side-code" aria-hidden="true">SYS / PORTFOLIO / 2026</div>
+                </div>
             </div>
+        </section>
 
-            <div class="about-grid">
-
-                <div class="about-text">
-                    <p>
-                        I am a Software Engineer based in Kuching, Sarawak, Malaysia.
-                        I graduated from Universiti Malaysia Sarawak (UNIMAS) with a
-                        Bachelor of Computer Science with Honours in Information Systems
-                        in 2018.
-                    </p>
-
-                    <p>
-                        My professional experience began with web development and
-                        technical support at Tractive Sdn Bhd, where I worked with
-                        Angular, Node.js, AWS, Firebase and digital signage systems.
-                    </p>
-
-                    <p>
-                        Since April 2021, I have been working at Pasti Nyala Sdn Bhd,
-                        developing and supporting customized business applications,
-                        including systems used by the Kuching Port Authority.
-                    </p>
-                </div>
-
-                <div class="facts">
-                    <div class="fact">
-                        <strong>Location</strong>
-                        <span>Kuching, Sarawak</span>
-                    </div>
-
-                    <div class="fact">
-                        <strong>Current Role</strong>
-                        <span>Software Engineer</span>
-                    </div>
-
-                    <div class="fact">
-                        <strong>Current Company</strong>
-                        <span>Pasti Nyala Sdn Bhd</span>
-                    </div>
-
-                    <div class="fact">
-                        <strong>Education</strong>
-                        <span>Bachelor of Computer Science</span>
-                    </div>
-
-                    <div class="fact">
-                        <strong>Primary Backend</strong>
-                        <span>PHP &amp; MySQL</span>
-                    </div>
-
-                    <div class="fact">
-                        <strong>Infrastructure</strong>
-                        <span>Linux, Apache &amp; Cron</span>
-                    </div>
-                </div>
-
+        <div class="tech-strip" aria-label="Core technologies">
+            <div class="tech-track">
+                <ul class="tech-list">
+                    <li>PHP</li><li>MySQL</li><li>JavaScript</li><li>Linux</li><li>Bash</li><li>Apache</li><li>Automation</li><li>System Integration</li>
+                </ul>
+                <ul class="tech-list" aria-hidden="true">
+                    <li>PHP</li><li>MySQL</li><li>JavaScript</li><li>Linux</li><li>Bash</li><li>Apache</li><li>Automation</li><li>System Integration</li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="experience">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <div class="section-number">02 / Experience</div>
-                    <h2>Professional experience.</h2>
-                </div>
-
-                <p class="section-intro">
-                    Experience across custom business applications, web development,
-                    databases, automation and technical operations.
-                </p>
-            </div>
-
-            <div class="timeline">
-
-                <article class="job">
-                    <div class="job-date">APR 2021 — PRESENT</div>
-
+        <section class="section-shell" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-head" data-reveal>
                     <div>
-                        <h3>Software Engineer</h3>
-                        <div class="company">Pasti Nyala Sdn Bhd · Kuching, Sarawak</div>
-                        <img src="https://erwinerickson.github.io/images/pnsb.png"
-                             alt="Pasti Nyala Sdn Bhd"
-                             style="height:64px;max-width:180px;object-fit:contain;border-radius:8px;margin-bottom:14px;">
+                        <div class="section-index">01 <span>/ Profile</span></div>
+                        <h2 id="about-title">Practical engineering. Production reality.</h2>
+                    </div>
+                    <p class="section-intro">A software engineer whose work spans application development, databases, infrastructure, automation and hands-on technical support.</p>
+                </div>
 
-                        <p>
-                            Develop and maintain customized business applications and
-                            supporting systems. Work across application development,
-                            databases, Linux servers, automation and production support.
-                        </p>
+                <div class="about-layout">
+                    <article class="about-copy panel" data-reveal>
+                        <p class="about-lead">I build dependable software for the places where code meets day-to-day operations.</p>
+                        <p>I am based in Kuching, Sarawak, Malaysia. I graduated from Universiti Malaysia Sarawak (UNIMAS) in 2018 with a Bachelor of Computer Science with Honours in Information Systems.</p>
+                        <p>My professional journey began at Tractive Sdn Bhd, working across Angular, Node.js, AWS, Firebase and digital signage. Since April 2021, I have been developing and supporting customized business applications at Pasti Nyala Sdn Bhd, including systems used by the Kuching Port Authority.</p>
+                    </article>
 
+                    <div class="facts-grid" aria-label="Profile facts">
+                        <div class="fact" data-reveal data-reveal-delay="1"><span class="fact-number">01 / GEO</span><strong>Location</strong><span>Kuching, Sarawak</span></div>
+                        <div class="fact" data-reveal data-reveal-delay="2"><span class="fact-number">02 / ROLE</span><strong>Current role</strong><span>Software Engineer</span></div>
+                        <div class="fact" data-reveal data-reveal-delay="1"><span class="fact-number">03 / STACK</span><strong>Primary backend</strong><span>PHP &amp; MySQL</span></div>
+                        <div class="fact" data-reveal data-reveal-delay="2"><span class="fact-number">04 / OPS</span><strong>Infrastructure</strong><span>Linux, Apache &amp; Cron</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-shell" id="experience" aria-labelledby="experience-title">
+            <div class="container experience-layout">
+                <div class="experience-aside" data-reveal>
+                    <div class="section-index">02 <span>/ Experience</span></div>
+                    <h2 id="experience-title">Built in production, not in theory.</h2>
+                    <p>Experience across custom business applications, web platforms, databases, automation and technical operations.</p>
+                </div>
+
+                <div class="timeline">
+                    <article class="job-card" data-reveal>
+                        <div class="job-top">
+                            <div>
+                                <div class="job-date">April 2021 — Present</div>
+                                <h3>Software Engineer</h3>
+                                <div class="company">Pasti Nyala Sdn Bhd · Kuching, Sarawak</div>
+                            </div>
+                            <div class="company-logo">
+                                <img src="https://erwinerickson.github.io/images/pnsb.png" alt="Pasti Nyala Sdn Bhd logo" loading="lazy">
+                            </div>
+                        </div>
+
+                        <p>Develop and maintain customized business applications and supporting systems across software, databases, Linux servers, automation and production support.</p>
                         <ul>
-                            <li>Develop and maintain PHP and MySQL based web applications.</li>
+                            <li>Develop and maintain PHP and MySQL-based web applications.</li>
                             <li>Maintain and troubleshoot production databases and application services.</li>
-                            <li>Develop automated backup, restore, transfer and database synchronization processes.</li>
-                            <li>Use Bash, PHP CLI and Cron to automate recurring operational tasks.</li>
-                            <li>Work with Linux servers, Apache/httpd, SSH/SCP and system logs.</li>
-                            <li>Perform database migration, connectivity troubleshooting and legacy application modernization.</li>
+                            <li>Automate database backup, restore, transfer and synchronization workflows.</li>
+                            <li>Use Bash, PHP CLI and Cron for recurring operational tasks.</li>
+                            <li>Work with Linux, Apache/httpd, SSH/SCP and system logs.</li>
+                            <li>Support database migrations, connectivity work and legacy application modernization.</li>
                             <li>Support systems used in business and port-management operations.</li>
                         </ul>
-
                         <div class="tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">MySQL</span>
-                            <span class="tag">Linux</span>
-                            <span class="tag">Bash</span>
-                            <span class="tag">Cron</span>
-                            <span class="tag">Apache</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">SSH/SCP</span>
+                            <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">Cron</span><span class="tag">Apache</span><span class="tag">SQL</span><span class="tag">SSH/SCP</span>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="job">
-                    <div class="job-date">MAR 2019 — JAN 2021</div>
+                    <article class="job-card" data-reveal>
+                        <div class="job-top">
+                            <div>
+                                <div class="job-date">March 2019 — January 2021</div>
+                                <h3>Junior Web Developer cum Technical Support</h3>
+                                <div class="company">Tractive Sdn Bhd</div>
+                            </div>
+                            <div class="company-logo">
+                                <img src="https://erwinerickson.github.io/images/tractive-logo.png" alt="Tractive Sdn Bhd logo" loading="lazy">
+                            </div>
+                        </div>
 
-                    <div>
-                        <h3>Junior Web Developer cum Technical Support</h3>
-                        <div class="company">Tractive Sdn Bhd</div>
-                        <img src="https://erwinerickson.github.io/images/tractive-logo.png"
-                             alt="Tractive Sdn Bhd"
-                             style="height:64px;max-width:180px;object-fit:contain;border-radius:8px;margin-bottom:14px;">
-
-                        <p>
-                            Worked on digital signage, CMS and customized web solutions,
-                            while also providing technical support for hardware and
-                            deployed systems.
-                        </p>
-
+                        <p>Worked on digital signage, CMS and customized web solutions while providing technical support for hardware and deployed systems.</p>
                         <ul>
                             <li>Developed application components using Angular 8 and Node.js.</li>
-                            <li>Developed PDF, XLSX and PPT export functionality using third-party packages.</li>
+                            <li>Built PDF, XLSX and PowerPoint export functionality.</li>
                             <li>Developed backend services supporting application features.</li>
                             <li>Integrated Firebase authentication and created CMS template rules.</li>
-                            <li>Created charts for monitoring media usage with Chart.js.</li>
-                            <li>Worked with AWS/CDN for file delivery and deployment-related tasks.</li>
-                            <li>Maintained kiosks and tested software on Windows, Ubuntu and Raspberry Pi environments.</li>
+                            <li>Built media-usage monitoring charts with Chart.js.</li>
+                            <li>Worked with AWS and CDN delivery and deployment tasks.</li>
+                            <li>Maintained kiosks across Windows, Ubuntu and Raspberry Pi environments.</li>
                         </ul>
-
                         <div class="tags">
-                            <span class="tag">Angular 8</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">AWS</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Chart.js</span>
-                            <span class="tag">Linux</span>
-                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">Angular 8</span><span class="tag">Node.js</span><span class="tag">AWS</span><span class="tag">Firebase</span><span class="tag">Chart.js</span><span class="tag">Linux</span><span class="tag">Raspberry Pi</span>
                         </div>
-                    </div>
-                </article>
-
+                    </article>
+                </div>
             </div>
+        </section>
+
+        <section class="section-shell" id="projects" aria-labelledby="projects-title">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <div class="section-index">03 <span>/ Selected work</span></div>
+                        <h2 id="projects-title">Systems with a job to do.</h2>
+                    </div>
+                    <p class="section-intro">Selected platforms and technical initiatives from business systems, infrastructure automation and earlier product development.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card featured" data-reveal>
+                        <div class="project-topline">
+                            <span class="project-number">Project / 01</span>
+                            <span class="project-type">Operations platform</span>
+                        </div>
+                        <div class="project-content">
+                            <h3>Port Management System</h3>
+                            <p>A web-based operational platform supporting port-management activities, including cargo tracking, documentation and connected business processes.</p>
+                            <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Web Application</span><span class="tag">Production Support</span></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal>
+                        <div class="project-topline">
+                            <span class="project-number">Project / 02</span>
+                            <span class="project-type">Automation</span>
+                        </div>
+                        <div class="project-content">
+                            <h3>Database Automation</h3>
+                            <p>Automated backup, transfer, restore and synchronization workflows using database utilities, shell scripting, SSH/SCP and scheduled Cron jobs.</p>
+                            <div class="tags"><span class="tag">MySQL</span><span class="tag">Bash</span><span class="tag">Cron</span><span class="tag">SSH/SCP</span></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal data-reveal-delay="1">
+                        <div class="project-topline">
+                            <span class="project-number">Project / 03</span>
+                            <span class="project-type">Modernization</span>
+                        </div>
+                        <div class="project-content">
+                            <h3>Legacy System Modernization</h3>
+                            <p>Modernizing and maintaining legacy PHP applications for current runtime versions, safer database connectivity and long-term operational stability.</p>
+                            <div class="tags"><span class="tag">PHP 8</span><span class="tag">MySQLi</span><span class="tag">ODBC</span><span class="tag">PhpSpreadsheet</span></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal>
+                        <div class="project-topline">
+                            <span class="project-number">Project / 04</span>
+                            <span class="project-type">Data systems</span>
+                        </div>
+                        <div class="project-content">
+                            <h3>Bulk Data Synchronization</h3>
+                            <p>Scheduled synchronization of selected operational data between systems, including safe replacement, execution tracking and logs.</p>
+                            <div class="tags"><span class="tag">PHP CLI</span><span class="tag">MySQL</span><span class="tag">Cron</span><span class="tag">SQL</span></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal data-reveal-delay="1">
+                        <div class="project-visual">
+                            <img src="https://erwinerickson.github.io/images/sgdev.png" alt="Digital Signage CMS interface" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-topline">
+                                <span class="project-number">Project / 05</span>
+                                <span class="project-type">CMS</span>
+                            </div>
+                            <h3>Digital Signage CMS</h3>
+                            <p>A content management system for remotely managing digital advertising content, authentication, template rules and usage visualization.</p>
+                            <div class="tags"><span class="tag">Angular 8</span><span class="tag">Firebase</span><span class="tag">Chart.js</span></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal>
+                        <div class="project-visual">
+                            <img src="https://erwinerickson.github.io/images/intego.PNG" alt="ADEX Dashboard interface" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-topline">
+                                <span class="project-number">Project / 06</span>
+                                <span class="project-type">Planning platform</span>
+                            </div>
+                            <h3>ADEX Dashboard</h3>
+                            <p>A web-based advertising planning system that centralizes billboard inventory and supports digital media advertisement planning.</p>
+                            <div class="tags"><span class="tag">Angular 8</span><span class="tag">Node.js</span><span class="tag">AWS</span><span class="tag">CDN</span></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-shell skills-shell" id="skills" aria-labelledby="skills-title">
+            <div class="container skills-layout">
+                <div class="skills-copy" data-reveal>
+                    <div class="section-index">04 <span>/ Capability matrix</span></div>
+                    <h2 id="skills-title">A stack shaped by operations.</h2>
+                    <p>Tools selected for maintainability, clear ownership and dependable execution across application and infrastructure work.</p>
+                    <div class="stack-core" aria-label="Core stack">
+                        <span>PHP</span><span>MYSQL</span><span>LINUX</span><span>JAVASCRIPT</span>
+                    </div>
+                </div>
+
+                <div class="skill-grid">
+                    <article class="skill-group" data-reveal>
+                        <div class="skill-head"><h3>Languages</h3><span class="skill-icon" aria-hidden="true">01</span></div>
+                        <p>PHP · JavaScript · TypeScript · SQL · Bash · HTML5 · CSS · SCSS</p>
+                    </article>
+                    <article class="skill-group" data-reveal data-reveal-delay="1">
+                        <div class="skill-head"><h3>Web development</h3><span class="skill-icon" aria-hidden="true">02</span></div>
+                        <p>PHP · Angular · Node.js · REST/API · Joomla · Material UI</p>
+                    </article>
+                    <article class="skill-group" data-reveal>
+                        <div class="skill-head"><h3>Database</h3><span class="skill-icon" aria-hidden="true">03</span></div>
+                        <p>MySQL · MySQLi · ODBC · SQL · Database backup · Restore · Synchronization</p>
+                    </article>
+                    <article class="skill-group" data-reveal data-reveal-delay="1">
+                        <div class="skill-head"><h3>Server &amp; Linux</h3><span class="skill-icon" aria-hidden="true">04</span></div>
+                        <p>Rocky Linux · Linux · Apache/httpd · SSH · SCP · Cron · Server troubleshooting</p>
+                    </article>
+                    <article class="skill-group" data-reveal>
+                        <div class="skill-head"><h3>Automation</h3><span class="skill-icon" aria-hidden="true">05</span></div>
+                        <p>Bash scripts · PHP CLI · Cron jobs · mysqldump · Automated restore · Data transfer</p>
+                    </article>
+                    <article class="skill-group" data-reveal data-reveal-delay="1">
+                        <div class="skill-head"><h3>Tools &amp; platforms</h3><span class="skill-icon" aria-hidden="true">06</span></div>
+                        <p>Git · Postman · Jira · Bitbucket · Composer · PhpSpreadsheet · TCPDF · FPDF · AWS</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-shell" id="education" aria-labelledby="education-title">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <div class="section-index">05 <span>/ Education</span></div>
+                        <h2 id="education-title">The foundations.</h2>
+                    </div>
+                    <p class="section-intro">Formal training in computer science, information systems and information technology.</p>
+                </div>
+
+                <div class="education-grid">
+                    <article class="education-card" data-reveal>
+                        <div class="education-logo"><img src="https://erwinerickson.github.io/images/UNIMAS-logo.png" alt="Universiti Malaysia Sarawak logo" loading="lazy"></div>
+                        <div>
+                            <span class="education-date">2014 — 2018</span>
+                            <h3>Universiti Malaysia Sarawak</h3>
+                            <p>Bachelor of Computer Science with Honours (Information Systems)</p>
+                        </div>
+                    </article>
+                    <article class="education-card" data-reveal data-reveal-delay="1">
+                        <div class="education-logo"><img src="https://erwinerickson.github.io/images/tcs.PNG" alt="Technology College Sarawak logo" loading="lazy"></div>
+                        <div>
+                            <span class="education-date">2010 — 2013</span>
+                            <h3>Technology College Sarawak</h3>
+                            <p>Diploma in Computer Science (Information Technology)</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-shell contact-shell" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-card" data-reveal>
+                    <div class="section-index">06 <span>/ Contact</span></div>
+                    <h2 id="contact-title">Let’s build<br><span>what lasts.</span></h2>
+                    <p>Interested in software engineering, web applications, systems integration or technical projects? Get in touch.</p>
+                    <div class="contact-links">
+                        <a class="contact-link" href="mailto:erwinerickson92@gmail.com">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+                            Email
+                        </a>
+                        <a class="contact-link" href="https://github.com/erwinerickson" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 4 5.2 5.2 0 0 0 19.1.5S18 0 15 2a13.4 13.4 0 0 0-7 0C5-.1 3.9.5 3.9.5A5.2 5.2 0 0 0 3.7 4a5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"/><path d="M8 19c-3 .9-3-1.5-4-2"/></svg>
+                            GitHub
+                        </a>
+                        <a class="contact-link" href="https://my.linkedin.com/in/erwin-erickson-15b713138" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><path d="M2 9h4v12H2z"/><path d="M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>© <span data-year>2026</span> Erwin Erickson. All rights reserved.</div>
+            <div class="footer-status">Software Engineer · Kuching, Sarawak</div>
         </div>
-    </section>
+    </footer>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="container">
+    <script>
+        (() => {
+            const root = document.documentElement;
+            const header = document.getElementById('site-header');
+            const progress = document.querySelector('.scroll-progress');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            <div class="section-heading">
-                <div>
-                    <div class="section-number">03 / Selected Projects</div>
-                    <h2>Things I've worked on.</h2>
-                </div>
+            const closeMenu = () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+                navLinks.classList.remove('is-open');
+                document.body.classList.remove('menu-open');
+            };
 
-                <p class="section-intro">
-                    Selected systems and technical areas from professional and earlier
-                    development experience.
-                </p>
-            </div>
+            menuToggle.addEventListener('click', () => {
+                const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+                navLinks.classList.toggle('is-open', !isOpen);
+                document.body.classList.toggle('menu-open', !isOpen);
+            });
 
-            <div class="projects">
+            navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
-                <article class="project">
-                    <div class="project-number">01</div>
-                    <h3>Port Management System</h3>
-                    <p>
-                        Web-based operational system developed for port-management
-                        activities, supporting the tracking and handling of cargo and
-                        related business processes.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">PHP</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Web Application</span>
-                    </div>
-                </article>
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeMenu();
+            });
 
-                <article class="project">
-                    <div class="project-number">02</div>
-                    <h3>Database Automation</h3>
-                    <p>
-                        Automated backup, transfer, restore and synchronization workflows
-                        using database utilities, shell scripting, SSH/SCP and scheduled
-                        Cron jobs.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Bash</span>
-                        <span class="tag">Cron</span>
-                        <span class="tag">SSH/SCP</span>
-                    </div>
-                </article>
+            const updateScrollUI = () => {
+                const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+                progress.style.transform = `scaleX(${Math.min(Math.max(ratio, 0), 1)})`;
+                header.classList.toggle('is-scrolled', window.scrollY > 12);
+            };
 
-                <article class="project">
-                    <div class="project-number">03</div>
-                    <h3>Legacy System Modernization</h3>
-                    <p>
-                        Modernization and maintenance of legacy PHP applications,
-                        including compatibility work for newer PHP versions and updated
-                        database connectivity.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">PHP 8</span>
-                        <span class="tag">MySQLi</span>
-                        <span class="tag">ODBC</span>
-                        <span class="tag">PhpSpreadsheet</span>
-                    </div>
-                </article>
+            updateScrollUI();
+            window.addEventListener('scroll', updateScrollUI, { passive: true });
 
-                <article class="project">
-                    <div class="project-number">04</div>
-                    <h3>Bulk Data Synchronization</h3>
-                    <p>
-                        Automated synchronization of selected operational data between
-                        systems, including scheduled execution, data replacement and
-                        logging.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">PHP CLI</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Cron</span>
-                        <span class="tag">SQL</span>
-                    </div>
-                </article>
+            const revealItems = document.querySelectorAll('[data-reveal]');
+            if (reducedMotion || !('IntersectionObserver' in window)) {
+                revealItems.forEach((item) => item.classList.add('is-visible'));
+            } else {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
 
-                <article class="project">
-                    <div class="project-number">05</div>
-                    <img src="https://erwinerickson.github.io/images/sgdev.png"
-                         alt="Digital Signage CMS"
-                         style="width:100%;height:220px;object-fit:contain;border-radius:10px;margin-bottom:18px;">
-                    <h3>Digital Signage CMS</h3>
-                    <p>
-                        Content Management System for remotely managing digital
-                        advertising content, including authentication, template rules
-                        and usage visualization.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">Angular 8</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">Chart.js</span>
-                    </div>
-                </article>
+                revealItems.forEach((item) => revealObserver.observe(item));
+            }
 
-                <article class="project">
-                    <div class="project-number">06</div>
-                    <img src="https://erwinerickson.github.io/images/intego.PNG"
-                         alt="ADEX Dashboard"
-                         style="width:100%;height:220px;object-fit:contain;border-radius:10px;margin-bottom:18px;">
-                    <h3>ADEX Dashboard</h3>
-                    <p>
-                        Web-based advertising planning system used to centralize
-                        available billboard inventory and support digital media
-                        advertisement planning.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">Angular 8</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">AWS</span>
-                        <span class="tag">CDN</span>
-                    </div>
-                </article>
+            const sectionLinks = new Map();
+            document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
+                sectionLinks.set(link.getAttribute('href').slice(1), link);
+            });
 
-            </div>
-        </div>
-    </section>
+            if ('IntersectionObserver' in window) {
+                const activeObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        sectionLinks.forEach((link) => link.classList.remove('is-active'));
+                        const activeLink = sectionLinks.get(entry.target.id);
+                        if (activeLink) activeLink.classList.add('is-active');
+                    });
+                }, { rootMargin: '-32% 0px -58% 0px', threshold: 0 });
 
-    <!-- SKILLS -->
-    <section id="skills" class="skills">
-        <div class="container">
+                document.querySelectorAll('main section[id]').forEach((section) => activeObserver.observe(section));
+            }
 
-            <div class="section-heading">
-                <div>
-                    <div class="section-number">04 / Technical Skills</div>
-                    <h2>My toolbox.</h2>
-                </div>
+            if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
+                window.addEventListener('pointermove', (event) => {
+                    root.style.setProperty('--mx', `${event.clientX}px`);
+                    root.style.setProperty('--my', `${event.clientY}px`);
+                }, { passive: true });
 
-                <p class="section-intro">
-                    A combination of application development, database, server and
-                    automation technologies.
-                </p>
-            </div>
+                const portrait = document.getElementById('portrait-shell');
+                portrait.addEventListener('pointermove', (event) => {
+                    const rect = portrait.getBoundingClientRect();
+                    const x = (event.clientX - rect.left) / rect.width - .5;
+                    const y = (event.clientY - rect.top) / rect.height - .5;
+                    portrait.style.transform = `rotateY(${x * 5}deg) rotateX(${y * -5}deg)`;
+                });
+                portrait.addEventListener('pointerleave', () => {
+                    portrait.style.transform = '';
+                });
+            }
 
-            <div class="skill-grid">
-
-                <div class="skill-group">
-                    <h3>LANGUAGES</h3>
-                    <p>PHP · JavaScript · TypeScript · SQL · Bash · HTML5 · CSS · SCSS</p>
-                </div>
-
-                <div class="skill-group">
-                    <h3>WEB DEVELOPMENT</h3>
-                    <p>PHP · Angular · Node.js · JavaScript · REST/API · Joomla · Material UI</p>
-                </div>
-
-                <div class="skill-group">
-                    <h3>DATABASE</h3>
-                    <p>MySQL · MySQLi · ODBC · SQL · Database Backup · Restore · Synchronization</p>
-                </div>
-
-                <div class="skill-group">
-                    <h3>SERVER &amp; LINUX</h3>
-                    <p>Rocky Linux · Linux · Apache/httpd · SSH · SCP · Cron · Server Troubleshooting</p>
-                </div>
-
-                <div class="skill-group">
-                    <h3>AUTOMATION</h3>
-                    <p>Bash Scripts · PHP CLI · Cron Jobs · mysqldump · Automated Restore · Data Transfer</p>
-                </div>
-
-                <div class="skill-group">
-                    <h3>TOOLS &amp; PLATFORMS</h3>
-                    <p>Git · Postman · Jira · Bitbucket · Composer · PhpSpreadsheet · TCPDF · FPDF · AWS</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <div class="section-number">05 / Education</div>
-                    <h2>Education.</h2>
-                </div>
-
-                <p class="section-intro">
-                    Formal education in computer science and information technology.
-                </p>
-            </div>
-
-            <div class="education-grid">
-
-                <article class="education-card">
-                    <div class="date">2014 — 2018</div>
-                    <h3>Universiti Malaysia Sarawak (UNIMAS)</h3>
-                    <p>
-                        Bachelor of Computer Science with Honours
-                        (Information Systems)
-                    </p>
-                </article>
-
-                <article class="education-card">
-                    <div class="date">2010 — 2013</div>
-                    <h3>Technology College Sarawak (TCS)</h3>
-                    <p>
-                        Diploma in Computer Science
-                        (Information Technology)
-                    </p>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-        <div class="container contact-box">
-
-            <div>
-                <div class="section-number">06 / Contact</div>
-                <h2>Let's connect.</h2>
-                <p>
-                    Interested in software engineering, web application development,
-                    systems integration or technical projects? Feel free to get in touch.
-                </p>
-            </div>
-
-            <div class="contact-links">
-                <a class="contact-link" href="mailto:erwinerickson92@gmail.com">
-                    Email
-                </a>
-
-                <!-- Replace these URLs with your exact profiles if needed -->
-                <a class="contact-link" href="https://github.com/erwinerickson" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-
-                <a class="contact-link" href="https://my.linkedin.com/in/erwin-erickson-15b713138" target="_blank" rel="noopener">
-                    LinkedIn
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    <div class="container footer-inner">
-        <div>© 2026 Erwin Erickson. All rights reserved.</div>
-        <div>Software Engineer · Kuching, Sarawak.</div>
-    </div>
-</footer>
-
+            const year = document.querySelector('[data-year]');
+            if (year) year.textContent = new Date().getFullYear();
+        })();
+    </script>
 </body>
 </html>
